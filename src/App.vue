@@ -1,17 +1,18 @@
 <template>
   <v-app>
-  <NavBar />
   <router-view />
   </v-app>
 </template>
 
 <script>
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 export default {
   name: 'App',
   components: {
-    NavBar
+    NavBar,
+    Footer
   },
   data: () => ({
     //
@@ -21,7 +22,6 @@ export default {
 
 <style>
 body {
-  background: white;
-  width: 100vw;
+
 }
 </style>
