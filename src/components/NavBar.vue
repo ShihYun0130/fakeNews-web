@@ -1,18 +1,18 @@
 <template>
     <div id="navBar">
-        <v-toolbar light color="primary" class="no-shadow navBar-toolbar">
-            <router-link class="home-title" to="/Home"><v-toolbar-title class="lime--text text--darken-4">Title</v-toolbar-title></router-link>
-
+      <v-container class="con" fill-height fluid>
+        <v-toolbar color="transparent" class="navBar-toolbar pa-0">
+            <router-link class="text-dec white--text" to="/Home"><button class="mylink">DeFaker</button></router-link>
             <div class="flex-grow-1"></div>
+            <router-link class="text-dec white--text pl-8" to="/NewsInput"><button class="mylink">新聞查詢</button></router-link>
+            <router-link class="text-dec white--text pl-8" to="/NewsList"><button class="mylink">熱門搜索</button></router-link>
+            <router-link class="text-dec white--text pl-8" to="/UserList"><button class="mylink">可疑人物</button></router-link>
+            <router-link class="text-dec white--text pl-8" to="/Chart"><button class="mylink">統計資訊</button></router-link>
+            <router-link class="text-dec white--text pl-8" to="/About"><button class="mylink">關於我們</button></router-link>
 
-            <v-toolbar-items>
-                <v-btn text class="lime--text text--darken-4">
-                    <router-link class="link-newsInput white--text" to="/NewsInput">新聞查詢</router-link>
-                </v-btn>
-                <v-btn text class="white--text" to="/History">真假新聞</v-btn>
-                <v-btn text class="white--text">可疑人物</v-btn>
-            </v-toolbar-items>
+
         </v-toolbar>
+      </v-container>
     </div>
 </template>
 
@@ -24,19 +24,32 @@ export default {
 
 <style>
 #navBar {
-    font-size: 1.5vw;
+    font-size: 13px;
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: rgb(28,28,28,0.9)
 }
-.home-title {
-    text-decoration: none;
+.con {
+  padding: 0 7.3% !important;
 }
 .navBar-toolbar {
     height: 60px!important;
-}
-.no-shadow {
     box-shadow: none!important;
 }
-.link-newsInput {
-    text-decoration: none;
-    background: inherit;
+.v-toolbar__content {
+     padding: 0!important;
 }
+.text-dec {
+    text-decoration: none;
+    box-shadow: none!important;
+}
+.mylink:hover {
+  color: #FF9100;
+  transition: 0.3s;
+  outline: none;
+}
+
+.mylink:active{
+  color: #FD5D00
+}
+
 </style>
