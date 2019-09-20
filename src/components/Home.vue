@@ -1,10 +1,10 @@
 <template>
     <div id="home">
-        <v-container class="mycon" fill-height fluid>
+        <v-container fill-height fluid>
             <v-layout align-end> <!--置底-->
               <v-flex xs12>
-                  <div class="subtitle white--text mb-n7">看看誰在說謊?</div><!--Margin Bootom Negative 7 level-->
-                  <div class="mytitle white--text">DeFaker</div>
+                  <div class="mysubtitle white--text mb-n7">看看誰在說謊?</div><!--Margin Bootom Negative 7 level-->
+                  <div class="hometitle white--text">DeFaker</div>
                   <router-link to="/NewsInput"><button class="home-start mb-12">新聞查詢</button></router-link>
               </v-flex>
           </v-layout>
@@ -20,22 +20,17 @@ export default {
 
 <style>
 #home {
-    font-family: 'Noto Sans TC', sans-serif;
     background-image: url('../assets/home.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
-    height: 100%
+    height: 100vh
 }
-.mycon {
+.container {
   padding: 0 7.3% !important;
 }
 
-.subtitle {
-  font-size: 24px
-}
-
-.mytitle {
+.hometitle {
   font-size: 90px
 }
 

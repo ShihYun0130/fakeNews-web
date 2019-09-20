@@ -1,9 +1,9 @@
 <template>
     <div id="footer">
-      <v-container class="con" fill-height fluid>
+      <v-container fill-height fluid>
         <v-footer color="transparent" class="navBar-toolbar pa-0 ma-0" fluid>
         </v-footer>
-        <v-layout align-center justify-space-between>
+        <v-layout align-center justify-space-between id="footer-layout">
           <v-flex class="white--text">2019 National Taiwan University Information Management CCC Lab Project</v-flex>
           <v-flex class="white--text text-right" >Photo by Max Muselmann on Unsplash,<br>
                     charlotte Ljones on StackSnap,<br>
@@ -22,15 +22,14 @@ export default {
 <style>
 #footer {
     font-size: 10px;
-    font-family: 'Noto Sans TC', sans-serif;
     background-color: rgb(28,28,28,0.9);
-}
-.con {
-  padding: 0 7.3% !important;
 }
 .navBar-toolbar {
     height: 60px!important;
     box-shadow: none!important;
+}
+#footer-layout{
+  min-height: 60px
 }
 
 </style>

@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <div id="newsInput">
-      <NavBar />
-        <v-container class="mycon" fill-height fluid>
+
+        <v-container fill-height fluid>
 
             <v-layout column align-center>
             <v-flex xs4 justify-center>
@@ -67,7 +67,6 @@
             </v-layout>
 
         </v-container>
-        <Footer />
     </div>
   </v-app>
 </template>
@@ -76,16 +75,9 @@
 import { validationMixin } from 'vuelidate'
 import { required, maxLength, email } from 'vuelidate/lib/validators'
 
-import NavBar from './NavBar';
-import Footer from './Footer';
-
 export default {
 mixins: [validationMixin],
 
-components: {
-  NavBar,
-  Footer
-},
 
 validations: {
     name: { required, maxLength: maxLength(10) },
@@ -157,14 +149,9 @@ methods: {
 
 <style>
 #newsInput {
-    font-family: 'Noto Sans TC', sans-serif;
-    background-image: url('../assets/bg.png');
-    background-repeat: no-repeat;
-    background-size:cover;
+
 }
-.mycon {
-  padding: 0 7.3% !important;
-}
+
 .newsInput-container {
     height: 90vh;
     background: white;
