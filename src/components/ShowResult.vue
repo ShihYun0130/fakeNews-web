@@ -49,13 +49,15 @@
                         valueKey="value"
                         :color="myColors"
                         :showTooltip="true"
-                        :wordClick="wordClickHandler">
+                        :wordClick="wordClickHandler"
+                        class="wordCloud"
+                        >
                         </wordcloud>
                     </v-col>
                 </v-row>
 
                 <v-row justify="end" class="mb-10">
-                    <v-col md="8" class="pb-10 result-analysis result-analysis-left">
+                    <v-col md="9" class="pb-10 result-analysis result-analysis-left">
                         <h2 class="mysubtitle mt-10 mb-10">熱門搜索</h2>
                         <v-simple-table dark class="hot-table">
                             <template v-slot:default>
@@ -163,14 +165,7 @@ export default {
                 "name": "pray",
                 "value": 5
                 },
-                {
-                "name": "hope",
-                "value": 5
-                },
-                {
-                "name": "happy",
-                "value": 5
-                }
+                
             ],
             desserts: [
             {
@@ -204,15 +199,7 @@ export default {
             {
                 name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
                 calories: 408,
-            },
-            {
-                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
-                calories: 452,
-            },
-            {
-                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
-                calories: 518,
-            },
+            }
             ],
         }
     },
@@ -248,6 +235,9 @@ export default {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+}
+.wordCloud {
+    display: inline;
 }
 .myspace {
     margin-left: 30px;
