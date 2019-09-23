@@ -8,13 +8,13 @@
             </v-row>
             <v-row justify="center" >
                 <v-col md="6" class="myform pa-10" justify="center">
-                    <v-row class="mb-4"><h2 class="mysubtitle white--text">新聞標題</h2></v-row>
+                    <v-row class="mb-4"><h2 class="mytext white--text">新聞標題</h2></v-row>
                     <v-row><input class="myinput" /></v-row>
-                    <v-row class="mt-10 mb-4"><h2 class="mysubtitle white--text">新聞來源</h2></v-row>
+                    <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞來源</h2></v-row>
                     <v-row><input class="myinput" /></v-row>
-                    <v-row class="mt-10 mb-4"><h2 class="mysubtitle white--text">新聞內文</h2></v-row>
+                    <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞內文</h2></v-row>
                     <v-row><textarea class="mytextarea" /></v-row>
-                    <v-row justify="end" class="mt-10"><router-link to="/ShowResult"><button class="newsInput-go">送出</button></router-link></v-row>
+                    <v-row justify="end" class="mt-10 mytext"><router-link to="/ShowResult"><button class="newsInput-go">送出</button></router-link></v-row>
                 </v-col>
             </v-row>
 
@@ -59,7 +59,6 @@ export default {
 
 }
 .newsInput-go {
-    font-size: 18px;
     border: solid white 1px;
     border-radius: 0;
     padding: 5px 40px;
@@ -70,7 +69,6 @@ export default {
     transition: 0.8s;
 }
 .newsInput-go:hover{
-    font-size: 18px;
     border: solid white 1px;
     border-radius: 0;
     padding: 5px 40px;
