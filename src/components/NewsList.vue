@@ -1,32 +1,22 @@
 <template>
     <div>
-        <v-container fluid row justify-center>
-            <v-col class="cards" cols="12">
-                <v-row>
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                </v-row>
-                <v-row>
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                </v-row>
-                <v-row>
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                </v-row>
-                <v-row>
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                    <Card class="ma-3" />
-                </v-row>
+        <v-container fill-height fluid>
+          <v-layout align-start column >
+            <v-flex white--text mt-10 class="mysubtitle">熱門搜索</v-flex>
+            <v-col cols="12">
+              <v-row
+                v-for="n in 2"
+                :key="n"
+              >
+                <v-col
+                  v-for="k in 4 "
+                  :key="k"
+                  >
+                  <Card />
+                </v-col>
+              </v-row>
             </v-col>
+        </v-layout>
         </v-container>
     </div>
 </template>
@@ -35,14 +25,18 @@
 import Card from './Card'
 
 export default {
-    components: {
-        Card
-    }
+  data: () => ({
+    total: 10,
+  }),
+  components: {
+    Card
+  },
+  computed: {
+
+ },
 }
 </script>
 
 <style>
-.cards {
-    padding: 1vw;
-}
+
 </style>
