@@ -1,241 +1,300 @@
 <template>
-    <v-container fluid row justify-center class="grey lighten-5" id="showResult">
-    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-    <div class="showResult-title">
-        <div class="title-bg">查</div>
-        <div class="title-bg">詢</div>
-        <div class="title-bg">結</div>
-        <div class="title-bg">果</div>
-    </div>
-    <v-layout column class="flex xs3">
-        <v-flex xs5 class="rectangle item1">
-            <h3>新聞公開發佈時間：</h3>
-            <span style="color: black">2019年9月14日</span>
-            <br/>
-            <h3>偵測結果：</h3>
-            <div class="show-possibility">90%為假新聞</div>
-        </v-flex>
-        <v-flex xs5 class="rectangle item2">
-            <div style="color: #26C6DA"><h3 style="display: inline; color: black">Ptt 發文ID：</h3>Bignana</div>
-            <br/>
-            <h3>與它關係密切的 ID 們：</h3>
-            <div class="show-IDs">snsdakb48、dtlove17、yillusionwei、Dinenger、j32072、team1245、AFIE</div>
-        </v-flex>
-        <v-flex xs2 class="rectangle item3">看看大家都查了什麼</v-flex>
-    </v-layout>
-    <v-layout column class="flex xs7">
-        <v-flex xs5 class="rectangle item4">
-            <h2 class="show-title lime--text text--darken-3">批小英兩岸政策「跟人家大小聲」柯文哲：我們都是Chinese</h2>
-            <div>新聞來源：<a href="https://news.ltn.com.tw/news/politics/breakingnews/2915650">https://news.ltn.com.tw/news/politics/breakingnews/2915650</a></div>
-            <div class="item4-content">
-                <img class="wordCloud_1" :src=wordCloud_1 />
-                <div class="show-newsContent">〔即時新聞／綜合報導〕台北市長柯文哲創立台灣民眾黨，意圖在明年2020立委選戰中爭取不分區立委席次。近日柯文哲接受香港媒體鳳凰衛視節目專訪，主持人提問對明年大選和台灣政治看法，柯文哲表示，「我們華人、我們Chinese，是很愛面子的國家」，認為總統蔡英文的兩岸政策過於僵硬，並酸國民黨總統候選人韓國瑜「根本沒準備好」。
-                    柯文哲日前接受鳳凰衛視「石評大財經」專訪，談論有關上任台北市長後的經驗，以及對於明年大選的看法。柯文哲認為，現在蔡英文的兩岸政策過於僵硬，「我們華人、我們Chinese，都是很愛面子的國家」，批評蔡英文只會跟對岸「大小聲」，並指出這是蔡英文應該解決的問題。
-                    柯文哲表示，要維持台灣國家主權與民主自由，不用向對岸大小聲。他舉2017年世大運為例，認為當時所作所為「哪裡沒有顧到台灣主權、台灣安全？」他表示，要顧及台灣的主權，不一定要像現在蔡英文的做法。
+    <v-app>
+        <div id="showResult">
+            <v-container fluid class="pa-0">
+                <div class="result-news-container">
+                    <h1 class="mytitle result-news">批小英兩岸政策「跟人家大小聲」柯文哲：Chinese都愛面子</h1>
+                    <div class="mytext result-news">新聞來源：自由時報<br/>新聞發布時間：2019-09-14 16:07</div>
+                    <div class="mytext result-news">〔即時新聞／綜合報導〕台北市長柯文哲創立台灣民眾黨，意圖在明年2020立委選戰中爭取不分區立委席次。
+                    近日柯文哲接受香港媒體鳳凰衛視節目專訪，主持人提問對明年大選和台灣政治看法，柯文哲表示，「我跟你講，華人、Chinese中國人，是很愛面子的國家」，
+                    認為總統蔡英文的兩岸政策過於僵硬，並酸國民黨總統候選人韓國瑜「根本沒準備好」。
+                    柯文哲日前接受鳳凰衛視「石評大財經」專訪，談論有關上任台北市長後的經驗，以及對於明年大選的看法。柯文哲認為，
+                    現在蔡英文的兩岸政策過於僵硬，「華人、Chinese，是很愛面子的國家」，批評蔡英文只會跟對岸「大小聲」，並指出這是蔡英文應該解決的問題。
+                    柯文哲表示，要維持台灣國家主權與民主自由，不用向對岸大小聲。他舉2017年世大運為例，認為當時所作所為「哪裡沒有顧到台灣主權、台灣安全？」
+                    他表示，要顧及台灣的主權，不一定要像現在蔡英文的做法。
                     至於另一名總統參選人韓國瑜，柯文哲則大笑，「他根本來沒準備好，這根本太可怕！」
-                    針對可能宣布參選的郭台銘，柯文哲則認為，郭必須要學會「捨得」，「有捨才有得啊！其實大家都知道答案，只是看他能不能做到而已。」
+                    針對可能宣布參選的郭台銘，柯文哲則認為，郭必須要學會「捨得」，「有捨才有得啊！其實大家都知道答案，只是看他能不能做到而已。」</div>
+                    <div class="myprogresscircle">
+                        <v-progress-circular
+                            :rotate="300"
+                            :size="180"
+                            :width="10"
+                            :value="value"
+                            color="white"
+                            >
+                            {{ value }}
+                        </v-progress-circular>
+                    </div>
+                    <div class="myprogresscircle-small"></div>
                 </div>
-            </div>
-            
-        </v-flex>
-        <v-flex xs7 class="rectangle item5">
-            <div class="item5-left">
-                <div class="reply-analysis-title">Ptt 留言情緒分析</div>
-                <img class="mood_analysis" :src=mood_analysis />
-                <div class="item5-left-bottom">
-                    <span class="item5-num"><span class="item5-left-bottom-total">留言數量</span>：200</span>
-                    <span class="item5-num"><span class="item5-left-bottom-total">推噓文比例</span>：50%</span>
-                </div>
-            </div>
-            <div class="item5-right">
-                <img class="wordCloud_2" :src=wordCloud_2 />
-                <div class="reply-cloud-title">Ptt 留言文字雲</div>
-            </div>
-        </v-flex>
-    </v-layout>
-  </v-container>
+                <v-row justify="start" class="mt-10">
+                    <v-col md="5" class="pt-10 pb-10 result-analysis result-analysis-left">
+                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：Bignana</h2>
+                        <div class="mytext ptt-title">
+                            <div>登入次數：982</div>
+                            <div class="myspace">有效文章數：120</div>
+                        </div>
+                        <div class="mytext">相關ID：sdf384r、dsjf84535、j943243、asd9877、iuy743、abc123、ptt</div>
+                    </v-col>
+                    <v-col md="4" class="pt-10 pb-10 result-analysis result-analysis-right">
+                        <h2 class="mysubtitle mb-2">Ptt 轉發時間：2019-09-14 16:07</h2>
+                        <div class="mytext">Ptt 轉發 IP：115.82.19.34(台灣)</div>
+                        <div class="mytext">第一次轉貼至本系統時間：2019-09-15 08:01</div>
+                    </v-col>
+                </v-row>
+                <v-row justify="start">
+                    <v-col md="5" class="result-analysis result-analysis-left">
+                        <h2 class="mysubtitle mb-2">Ptt 留言數量：200</h2>
+                        <VueApexCharts type=donut width=380 :options="chartOptions" :series="pieseries" />
+                    </v-col>
+                    <v-col md="4" class="result-analysis result-analysis-right">
+                        <h2 class="mysubtitle mb-2">Ptt 留言情緒分析</h2>
+                        <VueApexCharts width="400" type="bar" :options="options" :series="series"></VueApexCharts>
+                    </v-col>
+                </v-row>
+                <v-row justify="start" class="mb-10">
+                    <v-col md="9" class="result-analysis result-analysis-left result-analysis-right">
+                        <h2 class="mysubtitle mb-2">Ptt 留言文字雲</h2>
+                        <wordcloud
+                        :data="defaultWords"
+                        nameKey="name"
+                        valueKey="value"
+                        :color="myColors"
+                        :showTooltip="true"
+                        :wordClick="wordClickHandler"
+                        class="wordCloud"
+                        >
+                        </wordcloud>
+                    </v-col>
+                </v-row>
+
+                <v-row justify="end" class="mb-10">
+                    <v-col md="9" class="pb-10 result-analysis result-analysis-left">
+                        <h2 class="mysubtitle mt-10 mb-10">熱門搜索</h2>
+                        <v-simple-table dark class="hot-table" color="transparent">
+                            <template v-slot:default>
+                            <thead>
+                                <tr>
+                                <th class="text-left">新聞標題</th>
+                                <th class="text-left">搜尋次數</th>
+                                <th class="text-left">假新聞機率</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in desserts" :key="item.name">
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.calories }}</td>
+                                <td>{{ item.calories }}%</td>
+                                </tr>
+                            </tbody>
+                            </template>
+                        </v-simple-table>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
+    </v-app>
 </template>
 
 <script>
-import wordCloud_1 from '../assets/wordcloud.png';
-import mood_analysis from '../assets/mood_analysis.png';
-import wordCloud_2 from '../assets/wordcloud2.png';
+import VueApexCharts from 'vue-apexcharts'
+import wordcloud from 'vue-wordcloud'
 
 export default {
-    data: () => ({
-      expand: true,
-      expand2: false,
-      wordCloud_1,
-      wordCloud_2,
-      mood_analysis
-    }),
-  }
+    components: {
+        VueApexCharts,
+        wordcloud,
+    },
+    beforeDestroy () {
+      clearInterval(this.interval)
+    },
+    mounted () {
+      this.interval = setTimeout(() => {
+        if (this.value === 100) {
+          return (this.value = 0)
+        }
+        this.value += 70
+      }, 1000)
+    },
+    data: function() {
+        return {
+            interval: {},
+            value: 0,
+            options: {
+                chart: {
+                    id: 'vuechart-example'
+                },
+                xaxis: {
+                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+                }
+            },
+            series: [{
+                name: 'series-1',
+                data: [30, 40, 45, 50, 49, 60, 70, 91]
+            }],
+            pieseries: [44, 55, 41, 17, 15],
+            chartOptions: {
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            },
+            myColors: ['#FF9100', '#E65100'],
+            defaultWords: [{
+                "name": "Cat",
+                "value": 26
+                },
+                {
+                "name": "fish",
+                "value": 19
+                },
+                {
+                "name": "things",
+                "value": 18
+                },
+                {
+                "name": "look",
+                "value": 16
+                },
+                {
+                "name": "two",
+                "value": 15
+                },
+                {
+                "name": "fun",
+                "value": 9
+                },
+                {
+                "name": "know",
+                "value": 9
+                },
+                {
+                "name": "good",
+                "value": 9
+                },
+                {
+                "name": "run",
+                "value": 6
+                },
+                {
+                "name": "go",
+                "value": 6
+                },
+                {
+                "name": "eat",
+                "value": 6
+                },
+                {
+                "name": "pray",
+                "value": 5
+                },
+                
+            ],
+            desserts: [
+            {
+                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
+                calories: 159,
+            },
+            {
+                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
+                calories: 237,
+            },
+            {
+                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
+                calories: 262,
+            },
+            {
+                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
+                calories: 305,
+            },
+            {
+                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
+                calories: 356,
+            },
+            {
+                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
+                calories: 375,
+            },
+            {
+                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
+                calories: 392,
+            },
+            {
+                name: '中國奪我友邦 國軍智庫：對岸「經援外交」可能跳票',
+                calories: 408,
+            }
+            ],
+        }
+    },
+    methods: {
+        wordClickHandler(name, value, vm) {
+        console.log('wordClickHandler', name, value, vm);
+        },
+        progress(event,progress,stepValue){
+            console.log(stepValue);
+        },
+        progress_end(event){
+            console.log("Circle progress end");
+        }
+    },
+}
 </script>
 
 <style>
 #showResult {
-    min-width: 400px;
+    color: white;
+    margin-top: 50px;
 }
-.showResult-title {
+.result-news-container {
+    padding-right: 18vw;
+}
+.result-news {
+    margin: 30px 0;
+    padding: 0 7.3%!important;
+}
+.v-progress-circular {
+  margin: 1rem;
+}
+.myprogresscircle {
+    position: fixed;
+    top: 100px;
+    right: 80px;
+}
+.myprogresscircle-small {
+    position: fixed;
+    top: 136px;
+    right: 116px;
+    width: 140px;
+    height: 140px;
+    border:#FF9100 dotted 3px;
+    border-radius: 100%;
+}
+.result-analysis {
+    background: rgb(28,28,28,0.9);
+}
+.result-analysis-left {
+    padding-left: 7.3%!important;
+}
+.ptt-title {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    color: #9E9D24;
-    font-size: 30px;
 }
-.title-bg {
-    border: #C0CA33 solid 2px;
-    border-radius: 10px;
-    background: #C0CA33;
-    padding: 20px;
-    margin: 10px;
-    color: white;
-    /* box-shadow: rgb(116, 116, 116) 2px 2px 5px; */
+.wordCloud {
+    display: inline;
 }
-.rectangle {
-    background: white;
-    margin: 8px;
-    color: white;
-    text-align: left;
-    padding: 3.5vw;
-    border-radius: 3px;
-    box-shadow: rgb(174, 174, 174) 2px 2px 6px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    white-space: nowrap;
-
-    transition: 2s;
+.myspace {
+    margin-left: 30px;
 }
-.show-title {
-    white-space: pre-wrap;
-}
-h3 {
-    color: black;
-}
-.item1 {
-    padding-left: 35px;
-}
-.item2 {
-}
-.item3 {
-    background: #C0CA33;
-    color: white;
-    font-size: 2vw;
-    align-items: center;
-    transition: 1s;
-}
-.item3:hover {
-    background: #9E9D24;
-    color: white;
-    font-size: 2vw;
-    align-items: center;
-    transition: 1s;
-    cursor: pointer;
-}
-.item4 {
-    color: rgb(55, 55, 55);
-    height: 30vw;
-    padding: 2.5vw;
-}
-.show-possibility {
-    color: #F48FB1;
-    font-size: 3.1vw;
-}
-.show-IDs {
-    color: #26C6DA;
-    font-size: 1.3vw;
-    white-space: pre-wrap;
-}
-.wordCloud_1 {
-    width: 35%;
-    height: 95%;
-}
-.wordCloud_2 {
-    width: 90%;
-}
-.item4-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 90%;
-    height: 60%;
-    margin: 1vw 0;
-}
-.show-newsContent {
-    width: 50%;
-    height: 100%;
-    overflow: scroll;
-    white-space: normal;
-    padding: 10px;
-    border-top: solid #26C6DA 2px;
-    border-bottom: solid #26C6DA 2px;
-}
-.mood_analysis {
-    width: 100%;
-}
-.item5 {
-    padding: 1.5vw 3.5vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
-.item5-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: black;
-    width: 50%;
-    height: 80%;
-}
-.item5-left-bottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 0;
-    padding-bottom: 0; 
-}
-.item5-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: black;
-    width: 50%;
-    height: 80%;
-}
-.reply-analysis-title {
-    text-align: center;
-    border: #26C6DA solid 1.4px;
-    border-radius: 50px;
-    color: white;
-    background: #26C6DA;
-    width: 100%;
-}
-.reply-cloud-title {
-    text-align: center;
-    border: #26C6DA solid 1.4px;
-    border-radius: 50px;
-    color: white;
-    background: #26C6DA;
-    width: 80%;
-}
-.item5-num {
-    margin: 0 0.5vw;
-}
-.item5-left-bottom-total {
-    text-align: center;
-    border: #26C6DA solid 1.4px;
-    border-radius: 50px;
-    color: white;
-    background: #26C6DA;
-    padding: 0 1.5vw;
+.hot-table {
+    width: 600px;
 }
 </style>
