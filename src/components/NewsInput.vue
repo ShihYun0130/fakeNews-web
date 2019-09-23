@@ -72,7 +72,6 @@ export default {
     border: solid white 1px;
     border-radius: 0;
     padding: 5px 40px;
-    margin: 2.5vh 20px;
     outline: none;
     box-shadow: 3px 3px 6px rgb(123, 123, 123);
     background:  white;

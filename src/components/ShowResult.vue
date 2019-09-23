@@ -2,19 +2,31 @@
     <v-app>
         <div id="showResult">
             <v-container fluid class="pa-0">
-                <h1 class="mytitle result-news">批小英兩岸政策「跟人家大小聲」柯文哲：Chinese都愛面子</h1>
-                <div class="mytext result-news">新聞來源：自由時報<br/>新聞發布時間：2019-09-14 16:07</div>
-                <div class="mytext result-news">〔即時新聞／綜合報導〕台北市長柯文哲創立台灣民眾黨，意圖在明年2020立委選戰中爭取不分區立委席次。
-                近日柯文哲接受香港媒體鳳凰衛視節目專訪，主持人提問對明年大選和台灣政治看法，柯文哲表示，「我跟你講，華人、Chinese中國人，是很愛面子的國家」，
-                認為總統蔡英文的兩岸政策過於僵硬，並酸國民黨總統候選人韓國瑜「根本沒準備好」。
-                柯文哲日前接受鳳凰衛視「石評大財經」專訪，談論有關上任台北市長後的經驗，以及對於明年大選的看法。柯文哲認為，
-                現在蔡英文的兩岸政策過於僵硬，「華人、Chinese，是很愛面子的國家」，批評蔡英文只會跟對岸「大小聲」，並指出這是蔡英文應該解決的問題。
-                柯文哲表示，要維持台灣國家主權與民主自由，不用向對岸大小聲。他舉2017年世大運為例，認為當時所作所為「哪裡沒有顧到台灣主權、台灣安全？」
-                他表示，要顧及台灣的主權，不一定要像現在蔡英文的做法。
-                至於另一名總統參選人韓國瑜，柯文哲則大笑，「他根本來沒準備好，這根本太可怕！」
-                針對可能宣布參選的郭台銘，柯文哲則認為，郭必須要學會「捨得」，「有捨才有得啊！其實大家都知道答案，只是看他能不能做到而已。」</div>
-                
-
+                <div class="result-news-container">
+                    <h1 class="mytitle result-news">批小英兩岸政策「跟人家大小聲」柯文哲：Chinese都愛面子</h1>
+                    <div class="mytext result-news">新聞來源：自由時報<br/>新聞發布時間：2019-09-14 16:07</div>
+                    <div class="mytext result-news">〔即時新聞／綜合報導〕台北市長柯文哲創立台灣民眾黨，意圖在明年2020立委選戰中爭取不分區立委席次。
+                    近日柯文哲接受香港媒體鳳凰衛視節目專訪，主持人提問對明年大選和台灣政治看法，柯文哲表示，「我跟你講，華人、Chinese中國人，是很愛面子的國家」，
+                    認為總統蔡英文的兩岸政策過於僵硬，並酸國民黨總統候選人韓國瑜「根本沒準備好」。
+                    柯文哲日前接受鳳凰衛視「石評大財經」專訪，談論有關上任台北市長後的經驗，以及對於明年大選的看法。柯文哲認為，
+                    現在蔡英文的兩岸政策過於僵硬，「華人、Chinese，是很愛面子的國家」，批評蔡英文只會跟對岸「大小聲」，並指出這是蔡英文應該解決的問題。
+                    柯文哲表示，要維持台灣國家主權與民主自由，不用向對岸大小聲。他舉2017年世大運為例，認為當時所作所為「哪裡沒有顧到台灣主權、台灣安全？」
+                    他表示，要顧及台灣的主權，不一定要像現在蔡英文的做法。
+                    至於另一名總統參選人韓國瑜，柯文哲則大笑，「他根本來沒準備好，這根本太可怕！」
+                    針對可能宣布參選的郭台銘，柯文哲則認為，郭必須要學會「捨得」，「有捨才有得啊！其實大家都知道答案，只是看他能不能做到而已。」</div>
+                    <div class="myprogresscircle">
+                        <v-progress-circular
+                            :rotate="300"
+                            :size="180"
+                            :width="10"
+                            :value="value"
+                            color="white"
+                            >
+                            {{ value }}
+                        </v-progress-circular>
+                    </div>
+                    <div class="myprogresscircle-small"></div>
+                </div>
                 <v-row justify="start" class="mt-10">
                     <v-col md="5" class="pt-10 pb-10 result-analysis result-analysis-left">
                         <h2 class="mysubtitle mb-2">Ptt 轉發 ID：Bignana</h2>
@@ -59,7 +71,7 @@
                 <v-row justify="end" class="mb-10">
                     <v-col md="9" class="pb-10 result-analysis result-analysis-left">
                         <h2 class="mysubtitle mt-10 mb-10">熱門搜索</h2>
-                        <v-simple-table dark class="hot-table">
+                        <v-simple-table dark class="hot-table" color="transparent">
                             <template v-slot:default>
                             <thead>
                                 <tr>
@@ -87,9 +99,27 @@
 <script>
 import VueApexCharts from 'vue-apexcharts'
 import wordcloud from 'vue-wordcloud'
+
 export default {
+    components: {
+        VueApexCharts,
+        wordcloud,
+    },
+    beforeDestroy () {
+      clearInterval(this.interval)
+    },
+    mounted () {
+      this.interval = setTimeout(() => {
+        if (this.value === 100) {
+          return (this.value = 0)
+        }
+        this.value += 70
+      }, 1000)
+    },
     data: function() {
         return {
+            interval: {},
+            value: 0,
             options: {
                 chart: {
                     id: 'vuechart-example'
@@ -206,12 +236,14 @@ export default {
     methods: {
         wordClickHandler(name, value, vm) {
         console.log('wordClickHandler', name, value, vm);
+        },
+        progress(event,progress,stepValue){
+            console.log(stepValue);
+        },
+        progress_end(event){
+            console.log("Circle progress end");
         }
     },
-    components: {
-        VueApexCharts,
-        wordcloud
-    }
 }
 </script>
 
@@ -220,9 +252,29 @@ export default {
     color: white;
     margin-top: 50px;
 }
+.result-news-container {
+    padding-right: 18vw;
+}
 .result-news {
     margin: 30px 0;
     padding: 0 7.3%!important;
+}
+.v-progress-circular {
+  margin: 1rem;
+}
+.myprogresscircle {
+    position: fixed;
+    top: 100px;
+    right: 80px;
+}
+.myprogresscircle-small {
+    position: fixed;
+    top: 136px;
+    right: 116px;
+    width: 140px;
+    height: 140px;
+    border:#FF9100 dotted 3px;
+    border-radius: 100%;
 }
 .result-analysis {
     background: rgb(28,28,28,0.9);
