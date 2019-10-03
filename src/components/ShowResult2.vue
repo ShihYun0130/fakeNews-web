@@ -3,23 +3,19 @@
         <div id="showResult">
             <v-container fluid class="pa-0">
                 <div class="result-news-container">
-                    <h1 class="mytitle result-news">郭文貴、班農直播 驚爆中共在福建部署50萬大軍準備攻台</h1>
-                    <div class="mytext result-news">新聞來源：自由時報<br/>新聞發布時間：2019-09-02 10:38</div>
-                    <div class="mytext result-news">〔財經頻道／綜合報導〕流亡美國的中國富豪郭文貴今日與上個月剛被美國總統川普讚譽為「我最好的門生之一」的前白宮首席策士班農（Steve Bannon）直播時爆出猛料，聲稱中共制定名為「雙菱行動」的攻台作戰計劃，在福建已部署50萬大軍和導彈部隊，一旦香港失去全面控制，共軍將突然對台動武，企圖收復台灣。
+                    <h1 class="mytitle result-news">帶韓粉爸看《返校》後「想起來了」 網友：國家會感謝你的</h1>
+                    <div class="mytext result-news">新聞來源：自由時報<br/>新聞發布時間：2019-09-24 11:27</div>
+                    <div class="mytext result-news">
+                      有網友在臉書上表示「誠摯建議帶長輩去看《返校》」，並說起上週末家庭日，拐騙爸媽去看《返校》的故事。該名網友說，父母原先都不知道要看什麼電影，直到抵達電影院時才知道要看《返校》，網友還裝傻向爸媽說是「青春校園片」。
 
-郭文貴今日與班農直播時聲稱，中共中央國家安全委員會已經定好對台作戰計劃，「在福建，50萬大軍、導彈部隊已經準備好，當香港失去全面控制，美國全面進行制裁、全面進行封鎖，像天安門六四事件一樣，西方和美國對中國進行制裁的時候，共產黨就會發起突然間的對台灣定點斬首行動、軍事打擊，徹底收復台灣，這叫『雙菱行動』」。
+直到電影播畢、出影廳後，父母難得沉默，沒有討論電影劇情，該名網友則和弟弟討論劇情時，弟弟說出「電影怎麼演都是假的！」激怒兩老，他們才願意加入討論。
 
-郭文貴警示，中共將宣稱香港反送中抗爭是美國和台灣的台獨份子在幕後策劃，且很多香港反送中領袖都藏在台灣，中共要去抓捕這些人，以此為由對台進行軍事行動，以收復臺灣，這是共產黨的核心目的之一。
+該名網友還說，也許是因為時代的不同，所以父母對電影劇情有不同的感受，雖然他們沒有哭，但是看見他們閃爍的眼神，「於是他們想起來了」。網友還說，身為韓粉的父親竟沒有任何批評，甚至在隔天，媽媽還瘋狂查詢白色恐怖相關資料，讓他表示「真的很感動」。
 
-郭文貴警告，中共對台動武可能隨時發生，此次中共的「雙菱行動」不惜一切代價，不論死多少人、流多少血，要百分之百拿下台灣。郭文貴呼籲，香港現在是台灣最大的保護屏障，「台灣只有站在香港的一邊，保護香港人民，你才能安全。只有大膽地行動，和全世界站在一起，台灣才可能有安全，否則很快將變成炮灰、彈灰」。
+此文一出，也引起網友熱烈討論，有網友留言說「太可怕了，爸爸是韓粉」、「慶幸我家長輩沒有韓粉」，也有網友留言說這是「今日最溫馨」；還有網友表示，也要帶自己的韓粉爸媽去看《返校》，更有網友引述電影對白，大讚該名網友「國家會感謝你的」。
 
-班農呼籲，如今香港局勢發展至此，在台灣的愛國者們應引以為鑑，香港有將近200年的法治，是人類史上最偉大的城市之一，台灣必須力挺香港人民，否則台灣就會變成下一個香港。
 
-郭文貴則對班農的說法表示贊同，「台灣的同胞們，如果你現在不和香港同胞絕對、決絕的站在一起、完全無私的站在一起，你就沒任何機會了，你比香港還糟糕，因為導彈打到台灣的時候，能和台灣人站在一起的，不會像香港背後的支持那麼多，因為香港的價值和利益是全世界的核心」。
-
-郭文貴說：「我呼籲所有台灣同胞和支持爆料革命的人，你們嚴肅認真的對待，應該要求台灣政府給予香港所有人一切可能的支持，並且發動全台灣緊急的作戰命令，與香港人民站在一起，把習近平、王岐山收復台灣、收復香港的野心和征服世界、要發動第三次世界大戰的行動阻止在香港大門之內，而不延燒到台灣，為此，台灣應該做好一切的準備和犧牲，只有這樣，才能讓共產黨徹底被消滅，給世界機會，給世界真相，讓世界和香港、台灣站在一起，共同滅掉共產黨」。
-
-</div>
+                    </div>
                     <div class="myprogresscircle">
                         <v-progress-circular
                             :rotate="300"
@@ -42,22 +38,22 @@
                 </div>
                 <v-row justify="start" class="mt-10">
                     <v-col md="5" class="pt-10 pb-10 result-analysis result-analysis-left">
-                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/ShowUserResult"><span class="mylinkText">soul5566</span></router-link></h2>
+                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/ShowUserResult"><span class="mylinkText">rpg1510</span></router-link></h2>
                         <div class="mytext ptt-title">
-                            <div>登入次數：724</div>
-                            <div class="myspace">有效文章數：105</div>
+                            <div>登入次數：3856</div>
+                            <div class="myspace">有效文章數：2464</div>
                         </div>
-                        <div class="mytext">相關ID：cloud7515、ReeJan</div>
+                        <div class="mytext">相關ID：cloud7515、ReeJa</div>
                     </v-col>
                     <v-col md="4" class="pt-10 pb-10 result-analysis result-analysis-right">
-                        <h2 class="mysubtitle mb-2">Ptt 轉發時間：2019-09-02 18:51</h2>
-                        <div class="mytext">Ptt 轉發 IP：61.228.39.106 (臺灣)</div>
-                        <div class="mytext">第一次轉貼至本系統時間：2019-09-30 18:01</div>
+                        <h2 class="mysubtitle mb-2">Ptt 轉發時間：2019-09-24 16:00</h2>
+                        <div class="mytext">Ptt 轉發 IP：195.176.3.19 (瑞士)</div>
+                        <div class="mytext">第一次轉貼至本系統時間：2019-09-30 19:51</div>
                     </v-col>
                 </v-row>
                 <v-row justify="start">
                     <v-col md="5" class="result-analysis result-analysis-left">
-                        <h2 class="mysubtitle mb-2">Ptt 留言數量：252</h2>
+                        <h2 class="mysubtitle mb-2">Ptt 留言數量：111</h2>
                         <VueApexCharts type=donut width=380 :options="chartOptions" :series="pieseries" />
                     </v-col>
                     <v-col md="4" class="result-analysis result-analysis-right">
@@ -132,7 +128,7 @@ export default {
         if (this.value === 100) {
           return (this.value = 0)
         }
-        this.value += 90
+        this.value += 92
       }, 1000)
     },
     data: function() {
@@ -163,9 +159,9 @@ export default {
             },
             series: [{
                 name: '留言個數',
-                data: [30, 40, 45, 50, 49, 60, 70]
+                data: [45, 20, 45, 70, 49, 52, 30]
             }],
-            pieseries: [87,31,134],
+            pieseries: [149,38,107],
             chartOptions: {
                 responsive: [{
                     breakpoint: 480,
@@ -194,27 +190,27 @@ export default {
             myColors: ['#FF9100', '#E65100', '#E78403', '#EE8802', '#FD2F00'],
             myFont: 'Noto Sans TC, sans-serif',
             defaultWords: [{
-                "name": "台灣",
+                "name": "返校",
                 "value": 55
                 },
                 {
-                "name": "笑死",
+                "name": "低能卡",
                 "value": 34
                 },
                 {
-                "name": "郭文貴",
+                "name": "幻想文",
                 "value": 10
                 },
                 {
-                "name": "來啊",
+                "name": "假含粉",
                 "value": 32
                 },
                 {
-                "name": "快打",
+                "name": "含粉",
                 "value": 17
                 },
                 {
-                "name": "美國",
+                "name": "自由",
                 "value": 12
                 },
                 {
@@ -222,7 +218,7 @@ export default {
                 "value": 11
                 },
                 {
-                "name": "笑你不敢",
+                "name": "唬爛",
                 "value": 10
                 },
                 {

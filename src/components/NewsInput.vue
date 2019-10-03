@@ -48,6 +48,7 @@ export default {
     color: white;
     width: 100%;
     height: 30px;
+    padding: 10px
 }
 .mytextarea {
     border: white solid 1px;
@@ -56,6 +57,7 @@ export default {
     width: 100%;
     resize: none;
     height: 100px;
+    padding: 10px
 
 }
 .newsInput-go {

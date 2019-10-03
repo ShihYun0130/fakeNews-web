@@ -1,6 +1,6 @@
 <template>
     <div id="navBar">
-      <v-container class="con" fill-height fluid>
+      <v-container fill-height fluid>
         <v-toolbar color="transparent" class="navBar-toolbar pa-0">
             <router-link class="text-dec white--text" to="/Home"><button class="mylink">DeFaker</button></router-link>
             <div class="flex-grow-1"></div>
@@ -28,9 +28,6 @@ export default {
     font-family: 'Noto Sans TC', sans-serif;
     background-color: rgb(28,28,28,0.9)
 }
-.con {
-  padding: 0 7.3% !important;
-}
 .navBar-toolbar {
     height: 60px!important;
     box-shadow: none!important;
@@ -49,7 +46,10 @@ export default {
 }
 
 .mylink:active{
-  color: #FD5D00
+  color: #FD5D00;
+  outline: none;
 }
+
+
 
 </style>

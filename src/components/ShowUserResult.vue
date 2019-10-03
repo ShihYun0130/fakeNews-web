@@ -5,7 +5,7 @@
           <v-layout class="card-layout" column>
             <v-flex xs-12 white--text mt-10 class="mytitle">可疑人物</v-flex>
             <v-flex xs-6 mt-8 ml-3 mb-8>
-                <v-row><input class="myinput user-search" placeholder="請輸入Ptt ID"/></v-row>
+                <v-row><input class="myinput user-search" placeholder="請輸入Ptt ID" value="rpg1510"/></v-row>
               <!--<v-row>
                 <v-text-field
                   style="width:500px;"
@@ -25,6 +25,7 @@
                   <v-col cols="4">轉發之假新聞</v-col>
                   <v-col cols="3">相關 ID</v-col>
                 </v-row>
+                <v-row class="UserCard result-card"><UserCardEX/></v-row>
 
                 <v-row class="UserCard"><UserCard/></v-row>
                 <v-row class="UserCard"><UserCard/></v-row>
@@ -53,12 +54,16 @@ export default {
 
 </script>
 
-
 <style>
-  .UserCard{
-      padding: 10px 0 10px 0
-  }
   ::-webkit-input-placeholder {
     font-size: 14px;
+  }
+  .result-card {
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    border-bottom: solid white 2px;
+  }
+  .user-search{
+    width: 25%
   }
 </style>

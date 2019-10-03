@@ -1,11 +1,11 @@
 <template>
   <v-app>
   <div id="app">
-    <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Chart' ">
+    <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Chart' || $route.path==='/ShowUserResult' ||  $route.path==='/ShowResult2'">
       <NavBar />
     </div>
-    <router-view />
-    <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Chart' ">
+    <router-view></router-view>
+    <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Chart' || $route.path==='/ShowUserResult' ||  $route.path==='/ShowResult2' ">
       <Footer />
     </div>
   </div>
@@ -41,6 +41,11 @@ export default {
 .layout{
   min-height: 100vh
 }
+
+/* font size*/
+.mybigtitle{
+  font-size: 47px
+}
 .mytitle{
   font-size: 24px
 }
@@ -49,5 +54,40 @@ export default {
 }
 .mytext{
   font-size: 14px
+}
+.mysubtext{
+  font-size: 10px
+}
+
+/*link*/
+.mylinkText{
+  color: white;
+  text-decoration: underline;
+}
+.mylinkText:hover {
+  color: #FF9100;
+  transition: 0.3s;
+  outline: none;
+}
+.mylinkText:active{
+  color: #FD5D00
+}
+.mylinkClean{
+  color: white;
+  text-decoration: none;
+  outline: none;
+}
+.mylinkClean:hover{
+  color: #FF9100;
+  transition: 0.3s;
+  outline: none;
+}
+.mylinkClean:active{
+  color: #FD5D00
+}
+
+/*card*/
+.rounded-card{
+    border-radius: 0;
 }
 </style>
