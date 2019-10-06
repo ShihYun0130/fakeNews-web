@@ -371,7 +371,7 @@ export default {
     align-items: center;
 }
 .wordCloud {
-    display: inline;
+    display: inline-block;
 }
 .myspace {
     margin-left: 30px;
