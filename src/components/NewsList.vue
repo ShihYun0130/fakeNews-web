@@ -5,9 +5,11 @@
             <v-row class="mytitle white--text mt-10">熱門搜索</v-row>
             <v-row class="mytext white--text mt-5 mb-6">兩周內於本系統搜尋次數排名</v-row>
             <v-row>
-                <v-col
+                <v-col 
                   v-for="(news, index) in newss"
+                  cols="3"
                   :key="index"
+
                   >
                   <NewsCard
                     :percent="news.percent"
@@ -30,7 +32,7 @@ import NewsCard from './NewsCard'
 
 export default {
   data: () => ({
-    total: 10,
+    total: 8,
 
     newss :[
       {
@@ -105,10 +107,6 @@ export default {
         pttTime: "2019-09-20 00:15",
         searchTimes: 62
       },
-
-
-
-
     ]
 
   }),
