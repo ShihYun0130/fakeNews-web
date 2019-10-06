@@ -5,7 +5,7 @@
         </v-footer>
         <v-layout align-center justify-space-between id="footer-layout">
           <v-flex class="white--text">2019 National Taiwan University Information Management CCC Lab Project</v-flex>
-          <v-flex class="white--text text-right" >Photo by Max Muselmann on Unsplash,<br>
+          <v-flex class="grey--text text-right" >Photo by Max Muselmann on Unsplash,<br>
                     charlotte Ljones on StackSnap,<br>
                     Toa Heftiba on StackSnap</v-flex>
         </v-layout>
