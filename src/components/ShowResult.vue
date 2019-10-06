@@ -68,17 +68,7 @@
                 <v-row justify="start" class="mb-10">
                     <v-col md="9" class="result-analysis result-analysis-left result-analysis-right">
                         <h2 class="mysubtitle mb-2">Ptt 留言文字雲</h2>
-                        <wordcloud
-                        :data="defaultWords"
-                        nameKey="name"
-                        valueKey="value"
-                        :color="myColors"
-                        :showTooltip="true"
-                        :wordClick="wordClickHandler"
-                        class="wordCloud"
-                        :font="myFont"
-                        >
-                        </wordcloud>
+                        <img :src=wordCloud_result alt="word cloud" class="wordcloud" />
                     </v-col>
                 </v-row>
 
@@ -97,7 +87,7 @@
                             </thead>
                             <tbody>
 
-                                <tr v-for="news in hotnews">
+                                <tr v-for="(news, index) in hotnews" :key="index">
                                 <td>{{ news.title }}</td>
                                 <td>{{ news.times }}</td>
                                 <td>{{ news.percent }}%</td>
@@ -116,8 +106,9 @@
 </template>
 
 <script>
-import VueApexCharts from 'vue-apexcharts'
-import wordcloud from 'vue-wordcloud'
+import VueApexCharts from 'vue-apexcharts';
+import wordcloud from 'vue-wordcloud';
+import wordCloud_result from '../assets/wordCloud-result.png'
 
 export default {
     components: {
@@ -137,6 +128,7 @@ export default {
     },
     data: function() {
         return {
+            wordCloud_result,
             interval: {},
             value: 0,
             options: {
@@ -370,8 +362,8 @@ export default {
     justify-content: flex-start;
     align-items: center;
 }
-.wordCloud {
-    display: inline-block;
+.wordcloud {
+    width: 95%;
 }
 .myspace {
     margin-left: 30px;
