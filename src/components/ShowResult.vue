@@ -3,23 +3,9 @@
         <div id="showResult">
             <v-container fluid class="pa-0">
                 <div class="result-news-container">
-                    <h1 class="mytitle result-news">郭文貴、班農直播 驚爆中共在福建部署50萬大軍準備攻台</h1>
-                    <div class="mytext result-news">新聞來源：自由時報<br/>新聞發布時間：2019-09-02 10:38</div>
-                    <div class="mytext result-news">〔財經頻道／綜合報導〕流亡美國的中國富豪郭文貴今日與上個月剛被美國總統川普讚譽為「我最好的門生之一」的前白宮首席策士班農（Steve Bannon）直播時爆出猛料，聲稱中共制定名為「雙菱行動」的攻台作戰計劃，在福建已部署50萬大軍和導彈部隊，一旦香港失去全面控制，共軍將突然對台動武，企圖收復台灣。
-
-郭文貴今日與班農直播時聲稱，中共中央國家安全委員會已經定好對台作戰計劃，「在福建，50萬大軍、導彈部隊已經準備好，當香港失去全面控制，美國全面進行制裁、全面進行封鎖，像天安門六四事件一樣，西方和美國對中國進行制裁的時候，共產黨就會發起突然間的對台灣定點斬首行動、軍事打擊，徹底收復台灣，這叫『雙菱行動』」。
-
-郭文貴警示，中共將宣稱香港反送中抗爭是美國和台灣的台獨份子在幕後策劃，且很多香港反送中領袖都藏在台灣，中共要去抓捕這些人，以此為由對台進行軍事行動，以收復臺灣，這是共產黨的核心目的之一。
-
-郭文貴警告，中共對台動武可能隨時發生，此次中共的「雙菱行動」不惜一切代價，不論死多少人、流多少血，要百分之百拿下台灣。郭文貴呼籲，香港現在是台灣最大的保護屏障，「台灣只有站在香港的一邊，保護香港人民，你才能安全。只有大膽地行動，和全世界站在一起，台灣才可能有安全，否則很快將變成炮灰、彈灰」。
-
-班農呼籲，如今香港局勢發展至此，在台灣的愛國者們應引以為鑑，香港有將近200年的法治，是人類史上最偉大的城市之一，台灣必須力挺香港人民，否則台灣就會變成下一個香港。
-
-郭文貴則對班農的說法表示贊同，「台灣的同胞們，如果你現在不和香港同胞絕對、決絕的站在一起、完全無私的站在一起，你就沒任何機會了，你比香港還糟糕，因為導彈打到台灣的時候，能和台灣人站在一起的，不會像香港背後的支持那麼多，因為香港的價值和利益是全世界的核心」。
-
-郭文貴說：「我呼籲所有台灣同胞和支持爆料革命的人，你們嚴肅認真的對待，應該要求台灣政府給予香港所有人一切可能的支持，並且發動全台灣緊急的作戰命令，與香港人民站在一起，把習近平、王岐山收復台灣、收復香港的野心和征服世界、要發動第三次世界大戰的行動阻止在香港大門之內，而不延燒到台灣，為此，台灣應該做好一切的準備和犧牲，只有這樣，才能讓共產黨徹底被消滅，給世界機會，給世界真相，讓世界和香港、台灣站在一起，共同滅掉共產黨」。
-
-</div>
+                    <h1 class="mytitle result-news">{{title}}</h1>
+                    <div class="mytext result-news">新聞來源：{{source}}<br/>新聞發布時間：{{time}}</div>
+                    <div class="mytext result-news">{{content}}</div>
                     <div class="myprogresscircle">
                         <v-progress-circular
                             :rotate="300"
@@ -42,7 +28,7 @@
                 </div>
                 <v-row justify="start" class="mt-10">
                     <v-col md="5" class="pt-10 pb-10 result-analysis result-analysis-left">
-                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/ShowUserResult"><span class="mylinkText">soul5566</span></router-link></h2>
+                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/ShowUserResult"><span class="mylinkText">{{PttId}}</span></router-link></h2>
                         <div class="mytext ptt-title">
                             <div>登入次數：724</div>
                             <div class="myspace">有效文章數：105</div>
@@ -57,7 +43,7 @@
                 </v-row>
                 <v-row justify="start">
                     <v-col md="5" class="result-analysis result-analysis-left">
-                        <h2 class="mysubtitle mb-2">Ptt 留言數量：252</h2>
+                        <h2 class="mysubtitle mb-2">Ptt 留言數量：{{PttReplyNum}}</h2>
                         <VueApexCharts type=donut width=380 :options="chartOptions" :series="pieseries" />
                     </v-col>
                     <v-col md="4" class="result-analysis result-analysis-right">
@@ -89,8 +75,8 @@
 
                                 <tr v-for="(news, index) in hotnews" :key="index">
                                 <td>{{ news.title }}</td>
-                                <td>{{ news.times }}</td>
-                                <td>{{ news.percent }}%</td>
+                                <td>{{ news.searchCount }}</td>
+                                <td>{{ news.prediction }}%</td>
                                 </tr>
 
 
@@ -109,8 +95,10 @@
 import VueApexCharts from 'vue-apexcharts';
 import wordcloud from 'vue-wordcloud';
 import wordCloud_result from '../assets/wordCloud-result.png'
+import axios from 'axios';
 
 export default {
+    name: "ShowResult",
     components: {
         VueApexCharts,
         wordcloud,
@@ -118,16 +106,15 @@ export default {
     beforeDestroy () {
       clearInterval(this.interval)
     },
-    mounted () {
-      this.interval = setTimeout(() => {
-        if (this.value === 100) {
-          return (this.value = 0)
-        }
-        this.value += 90
-      }, 1000)
-    },
     data: function() {
         return {
+            title: this.$route.params.result.title,
+            source: '',
+            time: '',
+            content: '',
+            PttId: '',
+            PttReplyNum: 0,
+
             wordCloud_result,
             interval: {},
             value: 0,
@@ -157,7 +144,7 @@ export default {
                 name: '留言個數',
                 data: [30, 40, 45, 50, 49, 60, 70]
             }],
-            pieseries: [87,31,134],
+            pieseries: [0,0,0],
             chartOptions: {
                 responsive: [{
                     breakpoint: 480,
@@ -265,47 +252,51 @@ export default {
             ],
             hotnews: [
             {
-                title: '帶韓粉爸看《返校》後「想起來了」 網友：國家會感謝你的',
-                times: 159,
-                percent: 92
+                
             },
-            {
-                title: '二度主動抖內柯營遭拒 郭董回應超霸氣',
-                times: 127,
-                percent: 47
-            },
-            {
-                title: '全民卡韓？高雄狂舉債借錢！韓國瑜竟稱：市民要求越來越高',
-                times: 94,
-                percent: 87
-            },
-            {
-                title: '《返校》那些年的奇葩禁書 金庸 & 英文文法',
-                times: 92,
-                percent: 93
-            },
-            {
-                title: '信徒看到韓 大喊「感恩市長、讚嘆市長」',
-                times: 85,
-                percent: 51
-            },
-            {
-                title: '房價不再飆漲 蔡英文：房屋不是炒作的商品',
-                times: 78,
-                percent: 75
-            },
-            {
-                title: '郭辦「拜託韓市長不用來」沒用 韓競選：絕不會沒有聯絡',
-                times: 69,
-                percent: 63
-            },
-            {
-                title: '柯文哲臉書按讚潮全是阿拉伯人？小編：非團隊所為',
-                times: 62,
-                percent: 90
-            }
             ],
         }
+    },
+    beforeMount () {
+        let result = JSON.parse(window.localStorage.getItem('result')||'[]');
+        // predict value
+        let pred = new Number(result.pred * 100);
+        this.value = pred.toFixed(3);
+        this.interval = setTimeout(() => {
+            if (this.value === 100) {
+                return (this.value = 0)
+            }
+        }, 1000)
+        this.title = result.title;
+        this.source = result.source;
+        this.time = result.time;
+        this.content = result.content;
+        this.PttId = result.uid;
+        this.PttReplyNum = result.msg_a;
+        this.pieseries = [
+            result.msg_p, 
+            result.msg_b, 
+            result.msg_n
+        ];
+
+
+        let hot = JSON.parse(window.localStorage.getItem('hot')||'[]');
+        if(!hot){
+            axios
+            .get('http://localhost:5000/api/search')
+            .then(response => {
+                console.log("hot", response);
+                window.localStorage.setItem('hot', JSON.stringify(response.data));
+                hot = response.data;
+                
+            })
+            .catch(error => {
+                console.log(error)
+                this.errored = true
+            })
+        }
+        this.hotnews = hot;
+        
     },
     methods: {
         wordClickHandler(name, value, vm) {

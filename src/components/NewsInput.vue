@@ -9,12 +9,12 @@
             <v-row justify="center" >
                 <v-col md="6" class="myform pa-10" justify="center">
                     <v-row class="mb-4"><h2 class="mytext white--text">新聞標題</h2></v-row>
-                    <v-row><input class="myinput" /></v-row>
+                    <v-row><input class="myinput" v-model="title" /></v-row>
                     <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞來源</h2></v-row>
                     <v-row><input class="myinput" /></v-row>
                     <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞內文</h2></v-row>
                     <v-row><textarea class="mytextarea" /></v-row>
-                    <v-row justify="end" class="mt-10 mytext"><router-link to="/ShowResult"><button class="newsInput-go">送出</button></router-link></v-row>
+                    <v-row justify="end" class="mt-10 mytext"><button class="newsInput-go" @click="submit" >送出</button></v-row>
                 </v-col>
             </v-row>
 
@@ -26,19 +26,63 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, maxLength, email } from 'vuelidate/lib/validators'
+import axios from 'axios'
+import Router from 'vue-router'
 
 export default {
+    name: "NewsInput",
+    props: {
+        loading: Boolean,
+    },
+    data: function(){ 
+        return {
+            title: '',
+            result: [
+            //     {
+            //     aid: '',
+            //     title: '',
+            //     ip: '',
+            //     uid: '',
+            //     msg_b: '',
+            //     msg_n: '',
+            //     msg_p: '',
+            //     msg_a: '',
+            //     content: '',
+            //     source: '',
+            //     time: '',
+            //     pred: ''
+            // }
+            ]
+        } 
+    },
+    methods: {
+        submit() {
+            axios
+            .post('http://localhost:5000/api/query', { title: this.title } )
+            .then(response => {
+                console.log(response);
+                // this.result = respone.date;
+                this.$emit('submit', response.data);
+                window.localStorage.setItem('result', JSON.stringify(response.data));
+                this.$router.push({ name: 'ShowResult', params: { result: response.data }});
+            })
+            .catch(error => {
+                console.log(error)
+                this.errored = true
+            })
+            .finally(() => this.loading = false)
 
-    data: () => ({
-    }),
+            
+                
+        }
+
+            
+    }
 
 }
 </script>
 
 <style>
-#newsInput {
-
-}
 .myform {
     background: rgb(28,28,28,0.9);
 }

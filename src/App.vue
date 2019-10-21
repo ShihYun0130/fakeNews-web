@@ -4,7 +4,7 @@
     <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Chart' || $route.path==='/ShowUserResult' ||  $route.path==='/ShowResult2'">
       <NavBar />
     </div>
-    <router-view></router-view>
+    <router-view ></router-view>
     <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Chart' || $route.path==='/ShowUserResult' ||  $route.path==='/ShowResult2' ">
       <Footer />
     </div>
@@ -23,8 +23,27 @@ export default {
     Footer
   },
   data: () => ({
-    //
+    // result: [{
+    //   aid: '',
+    //   title: '',
+    //   ip: '',
+    //   uid: '',
+    //   msg_b: '',
+    //   msg_n: '',
+    //   msg_p: '',
+    //   msg_a: '',
+    //   content: '',
+    //   source: '',
+    //   time: '',
+    //   pred: ''
+    // }]
   }),
+  methods: {
+    submit(response) {
+      this.result = response;
+      console.log("respaonse", response);
+    }
+  }
 };
 </script>
 

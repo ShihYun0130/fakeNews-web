@@ -15,7 +15,7 @@ const routes = [
   { path: '/', redirect: '/Home' },
   { path:'/Home', component: Home },
   { path:'/NewsInput', component: NewsInput },
-  { path:'/ShowResult', component: ShowResult },
+  { path:'/ShowResult', name: "ShowResult", component: ShowResult },
   { path:'/ShowResult2', component: ShowResult2 },
   { path:'/NewsList', component: NewsList},
   { path:'/UserList', component: UserList},
