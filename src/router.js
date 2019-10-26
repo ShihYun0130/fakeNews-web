@@ -8,6 +8,7 @@ import UserList from './components/UserList';
 import Statistics from './components/Statistics';
 import About from './components/About';
 import ShowUserResult from './components/ShowUserResult';
+import ErrorPage from './components/ErrorPage';
 
 
 
@@ -22,8 +23,7 @@ const routes = [
   { path:'/Statistics', component: Statistics},
   { path:'/About', component: About},
   { path:'/ShowUserResult', component: ShowUserResult },
-
-
+  { path:'/ErrorPage', name: "ErrorPage", component: ErrorPage },
   { path: '*', component: PageNotFound }
 ];
 

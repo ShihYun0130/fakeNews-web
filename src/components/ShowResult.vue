@@ -184,6 +184,13 @@ export default {
             .then(response => {
                 console.log("response", response);
                 let result = response.data.resource;
+
+                // error page
+                if (!result.title) {
+                    console.log("error");
+                    this.$router.replace({name: 'ErrorPage'});
+                }
+
                 this.result = response.resource;
                 this.title = result.title;
                 // predict value
@@ -217,6 +224,7 @@ export default {
                 let wc = result.wc;
                 wc = wc.slice(2);
                 wc = wc.slice(0, -1);
+                console.log(wc);
                 this.imageBytes = "data:image/png;base64,"+wc;
             })
             .catch(error => {

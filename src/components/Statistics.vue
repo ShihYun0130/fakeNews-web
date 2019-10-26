@@ -19,6 +19,8 @@
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
+import axios from 'axios'
+import env from '../env';
 
 export default {
   components: {
@@ -39,7 +41,7 @@ export default {
                   },
               },
               xaxis: {
-                  categories: ['TVBS', 'ETtoday', '蘋果日報', '中國時報', '自由時報', '聯合報', '中央社', '新頭殼'],
+                  categories: ['222', '333', 'dfs',],
                   labels: {
                     style: {
                       fontSize: '14px',
@@ -59,12 +61,46 @@ export default {
               },
               colors: ['#FF9100' ],
           },
-          series: [{
-              name: '疑似假新聞數量',
-              data: [50, 60, 92, 73, 63, 53, 70, 42]
-          }],
+          series: [],
+          news: []
 
       }
+  },
+  mounted() {
+    
+    axios
+    .get(env+'/api/stat')
+    .then(response => {
+      let series = [];
+      let news = [];
+      console.log("response stat", response.data);
+      for (var i = 0, len = response.data.length; i < len; i++) {
+        series = series.concat([response.data[i].fakeNewsNB]);
+        news = news.concat([response.data[i].name]);
+      }
+      this.series.push({
+          name: '疑似假新聞數量',
+          data: series
+      });
+      console.log("news", news);
+      console.log(this.options);
+
+      this.news = news;
+      console.log(this.options);
+
+      this.options = {
+        ...this.chartOptions, ...{
+          xaxis: {
+            categories: news
+          }
+        }
+      };
+    })
+    .catch(error => {
+        console.log(error)
+        this.errored = true
+    })
+    
   },
   methods: {
       wordClickHandler(name, value, vm) {

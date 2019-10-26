@@ -184,6 +184,13 @@ export default {
             .then(response => {
                 console.log("response", response);
                 let result = response.data.resource;
+                
+                // error page
+                if (!result.title) {
+                    console.log("error");
+                    this.$router.replace({name: 'ErrorPage'});
+                }
+                
                 this.result = response.resource;
                 this.title = result.title;
                 // predict value
