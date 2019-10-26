@@ -28,6 +28,7 @@ import { validationMixin } from 'vuelidate'
 import { required, maxLength, email } from 'vuelidate/lib/validators'
 import axios from 'axios'
 import Router from 'vue-router'
+import env from '../env';
 
 export default {
     name: "NewsInput",
@@ -57,26 +58,9 @@ export default {
     },
     methods: {
         submit() {
-            axios
-            .post('http://localhost:5000/api/query', { title: this.title } )
-            .then(response => {
-                console.log(response);
-                // this.result = respone.date;
-                this.$emit('submit', response.data);
-                window.localStorage.setItem('result', JSON.stringify(response.data));
-                this.$router.push({ name: 'ShowResult', params: { result: response.data }});
-            })
-            .catch(error => {
-                console.log(error)
-                this.errored = true
-            })
-            .finally(() => this.loading = false)
-
-            
-                
-        }
-
-            
+            localStorage.setItem('title', JSON.stringify(this.title));
+            this.$router.push({ name: 'ShowResult', params: { title: this.title } });
+        }    
     }
 
 }

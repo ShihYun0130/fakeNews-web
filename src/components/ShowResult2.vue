@@ -3,19 +3,8 @@
         <div id="showResult">
             <v-container fluid class="pa-0">
                 <div class="result-news-container">
-                    <h1 class="mytitle result-news">帶韓粉爸看《返校》後「想起來了」 網友：國家會感謝你的</h1>
-                    <div class="mytext result-news">新聞來源：自由時報<br/>新聞發布時間：2019-09-24 11:27</div>
-                    <div class="mytext result-news">
-                      有網友在臉書上表示「誠摯建議帶長輩去看《返校》」，並說起上週末家庭日，拐騙爸媽去看《返校》的故事。該名網友說，父母原先都不知道要看什麼電影，直到抵達電影院時才知道要看《返校》，網友還裝傻向爸媽說是「青春校園片」。
-
-直到電影播畢、出影廳後，父母難得沉默，沒有討論電影劇情，該名網友則和弟弟討論劇情時，弟弟說出「電影怎麼演都是假的！」激怒兩老，他們才願意加入討論。
-
-該名網友還說，也許是因為時代的不同，所以父母對電影劇情有不同的感受，雖然他們沒有哭，但是看見他們閃爍的眼神，「於是他們想起來了」。網友還說，身為韓粉的父親竟沒有任何批評，甚至在隔天，媽媽還瘋狂查詢白色恐怖相關資料，讓他表示「真的很感動」。
-
-此文一出，也引起網友熱烈討論，有網友留言說「太可怕了，爸爸是韓粉」、「慶幸我家長輩沒有韓粉」，也有網友留言說這是「今日最溫馨」；還有網友表示，也要帶自己的韓粉爸媽去看《返校》，更有網友引述電影對白，大讚該名網友「國家會感謝你的」。
-
-
-                    </div>
+                    <h1 class="mytitle result-news">{{title}}</h1>
+                    <div class="mytext result-news">{{content}}</div>
                     <div class="myprogresscircle">
                         <v-progress-circular
                             :rotate="300"
@@ -38,22 +27,22 @@
                 </div>
                 <v-row justify="start" class="mt-10">
                     <v-col md="5" class="pt-10 pb-10 result-analysis result-analysis-left">
-                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/ShowUserResult"><span class="mylinkText">rpg1510</span></router-link></h2>
+                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/ShowUserResult"><span class="mylinkText">{{PttId}}</span></router-link></h2>
                         <div class="mytext ptt-title">
-                            <div>登入次數：3856</div>
-                            <div class="myspace">有效文章數：2464</div>
+                            <div>登入次數：724</div>
+                            <div class="myspace">有效文章數：{{postNB}}</div>
                         </div>
-                        <div class="mytext">相關ID：cloud7515、ReeJa</div>
+                        <div class="mytext">相關ID：cloud7515、ReeJan</div>
                     </v-col>
                     <v-col md="4" class="pt-10 pb-10 result-analysis result-analysis-right">
-                        <h2 class="mysubtitle mb-2">Ptt 轉發時間：2019-09-24 16:00</h2>
-                        <div class="mytext">Ptt 轉發 IP：195.176.3.19 (瑞士)</div>
-                        <div class="mytext">第一次轉貼至本系統時間：2019-09-30 19:51</div>
+                        <h2 class="mysubtitle mb-2">Ptt 轉發時間：{{time}}</h2>
+                        <div class="mytext">Ptt 轉發 IP：{{ip}}</div>
+                        <div class="mytext">第一次轉貼至本系統時間：{{currentDate}}</div>
                     </v-col>
                 </v-row>
                 <v-row justify="start">
                     <v-col md="5" class="result-analysis result-analysis-left">
-                        <h2 class="mysubtitle mb-2">Ptt 留言數量：111</h2>
+                        <h2 class="mysubtitle mb-2">Ptt 留言數量：{{PttReplyNum}}</h2>
                         <VueApexCharts type=donut width=380 :options="chartOptions" :series="pieseries" />
                     </v-col>
                     <v-col md="4" class="result-analysis result-analysis-right">
@@ -64,7 +53,7 @@
                 <v-row justify="start" class="mb-10">
                     <v-col md="9" class="result-analysis result-analysis-left result-analysis-right">
                         <h2 class="mysubtitle mb-2">Ptt 留言文字雲</h2>
-                        <img :src=wordCloud_result2 alt="word cloud" class="wordcloud" />
+                        <img class="wordcloud" v-bind:src="imageBytes" />
                     </v-col>
                 </v-row>
 
@@ -83,10 +72,10 @@
                             </thead>
                             <tbody>
 
-                                <tr v-for="(news, index) in hotnews" :key=index>
+                                <tr v-for="(news, index) in hotnews" :key="index">
                                 <td>{{ news.title }}</td>
-                                <td>{{ news.times }}</td>
-                                <td>{{ news.percent }}%</td>
+                                <td>{{ news.searchCount }}</td>
+                                <td>{{ news.prediction }}%</td>
                                 </tr>
 
 
@@ -102,11 +91,14 @@
 </template>
 
 <script>
-import VueApexCharts from 'vue-apexcharts'
-import wordcloud from 'vue-wordcloud'
-import wordCloud_result2 from '../assets/wordCloud-result2.png'
+import VueApexCharts from 'vue-apexcharts';
+import wordcloud from 'vue-wordcloud';
+import wordCloud_result from '../assets/wordCloud-result.png'
+import axios from 'axios';
+import env from '../env';
 
 export default {
+    name: "ShowResult",
     components: {
         VueApexCharts,
         wordcloud,
@@ -114,17 +106,20 @@ export default {
     beforeDestroy () {
       clearInterval(this.interval)
     },
-    mounted () {
-      this.interval = setTimeout(() => {
-        if (this.value === 100) {
-          return (this.value = 0)
-        }
-        this.value += 92
-      }, 1000)
-    },
     data: function() {
         return {
-            wordCloud_result2,
+            result: {},
+            title: '',
+            source: '',
+            time: '',
+            content: '',
+            PttId: '',
+            ip: '',
+            postNB: '',
+            imageBytes: '',
+            PttReplyNum: 0,
+            wordCloud_result,
+            currentDate: '',
             interval: {},
             value: 0,
             options: {
@@ -135,7 +130,7 @@ export default {
                     },
                 },
                 xaxis: {
-                    categories: ['開心', '驚奇', '有趣', '無感', '害怕', '悲傷', '憤怒'],
+                    categories: ['負面', '正面'],
                     labels: {
                       style: {
                         fontSize: '14px',
@@ -149,11 +144,8 @@ export default {
                 },
                 colors: ['#FF9100' ],
             },
-            series: [{
-                name: '留言個數',
-                data: [45, 20, 45, 70, 49, 52, 30]
-            }],
-            pieseries: [149,38,107],
+            series: [],
+            pieseries: [20, 20, 0],
             chartOptions: {
                 responsive: [{
                     breakpoint: 480,
@@ -176,132 +168,92 @@ export default {
                         colors: 'white',
                     },
                 }
-
-
-                },
+            },
             myColors: ['#FF9100', '#E65100', '#E78403', '#EE8802', '#FD2F00'],
             myFont: 'Noto Sans TC, sans-serif',
-            defaultWords: [{
-                "name": "返校",
-                "value": 55
-                },
-                {
-                "name": "低能卡",
-                "value": 34
-                },
-                {
-                "name": "幻想文",
-                "value": 10
-                },
-                {
-                "name": "假含粉",
-                "value": 32
-                },
-                {
-                "name": "含粉",
-                "value": 17
-                },
-                {
-                "name": "自由",
-                "value": 12
-                },
-                {
-                "name": "香港",
-                "value": 11
-                },
-                {
-                "name": "唬爛",
-                "value": 10
-                },
-                {
-                "name": "來阿",
-                "value": 9
-                },
-                {
-                "name": "哈哈哈",
-                "value": 6
-                },
-                {
-                "name": "要打快打",
-                "value": 8
-                },
-                {
-                "name": "拜託快打",
-                "value": 8
-                },
-                {
-                "name": "日本",
-                "value": 5
-                },
-                {
-                "name": "打台灣",
-                "value": 5
-                },
-                {
-                "name": "呵呵",
-                "value": 5
-                },
-                {
-                "name": "不可能",
-                "value": 5
-                },
-                {
-                "name": "班農",
-                "value": 5
-                },
-                {
-                "name": "北七",
-                "value": 5
-                },
-                {
-                "name": "給你錢",
-                "value": 5
-                },
-
-            ],
-            hotnews: [
-            {
-                title: '帶韓粉爸看《返校》後「想起來了」 網友：國家會感謝你的',
-                times: 159,
-                percent: 92
-            },
-            {
-                title: '二度主動抖內柯營遭拒 郭董回應超霸氣',
-                times: 127,
-                percent: 47
-            },
-            {
-                title: '全民卡韓？高雄狂舉債借錢！韓國瑜竟稱：市民要求越來越高',
-                times: 94,
-                percent: 87
-            },
-            {
-                title: '《返校》那些年的奇葩禁書 金庸 & 英文文法',
-                times: 92,
-                percent: 93
-            },
-            {
-                title: '信徒看到韓 大喊「感恩市長、讚嘆市長」',
-                times: 85,
-                percent: 51
-            },
-            {
-                title: '房價不再飆漲 蔡英文：房屋不是炒作的商品',
-                times: 78,
-                percent: 75
-            },
-            {
-                title: '郭辦「拜託韓市長不用來」沒用 韓競選：絕不會沒有聯絡',
-                times: 69,
-                percent: 63
-            },
-            {
-                title: '柯文哲臉書按讚潮全是阿拉伯人？小編：非團隊所為',
-                times: 62,
-                percent: 90
-            }
-            ],
+            hotnews: [{}],
         }
+    },
+    created() {
+        
+    },
+    mounted() {
+        let title = this.$route.params.title;
+        axios
+            .post(env+'/api/query', { title: title } )
+            .then(response => {
+                console.log("response", response);
+                let result = response.data.resource;
+                this.result = response.resource;
+                this.title = result.title;
+                // predict value
+                this.value = new Number(result.pred);
+                this.interval = setTimeout(() => {
+                    if (this.value === 100) {
+                        return (this.value = 0)
+                    }
+                }, 1000)
+                // this.title = result.title;
+                this.source = result.source;
+                this.time = result.time;
+                this.content = result.content;
+                this.PttId = result.uid;
+                this.ip = result.ip;
+                this.postNB = result.postNB;
+                this.PttReplyNum = result.msg_a;
+                this.pieseries = [
+                    new Number(result.msg_p), 
+                    new Number(result.msg_b), 
+                    new Number(result.msg_n)
+                ];
+                this.series.push({
+                    name: '留言個數',
+                    data: [
+                        new Number(result.sep[0]) + new Number(result.sep[1]), 
+                        new Number(result.sep[2]) + new Number(result.sep[3]),
+                    ]
+                });
+                
+                let wc = result.wc;
+                wc = wc.slice(2);
+                wc = wc.slice(0, -1);
+                this.imageBytes = "data:image/png;base64,"+wc;
+            })
+            .catch(error => {
+                console.log(error)
+                this.errored = true
+            })
+            .finally(() => this.loading = false)
+        
+        
+
+        axios
+        .get(env+'/api/search')
+        .then(response => {
+            console.log("hot", response);
+            this.hotnews = response.data;
+            
+        })
+        .catch(error => {
+            console.log(error)
+            this.errored = true
+        })
+
+
+        // record current time
+        function formatDate(date) {
+            let day = date.getDate();
+            let monthIndex = date.getMonth();
+            let year = date.getFullYear();
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            return year.toString()+'年'+(monthIndex+1).toString()+'月'+day.toString()+'日'+" "+h.toString()+':'+m.toString()+':'+s.toString();
+        }
+
+        console.log(formatDate(new Date())); 
+        this.currentDate = formatDate(new Date());
+
     },
     methods: {
         wordClickHandler(name, value, vm) {
@@ -358,8 +310,8 @@ export default {
     justify-content: flex-start;
     align-items: center;
 }
-.wordCloud {
-    display: inline;
+.wordcloud {
+    width: 95%;
 }
 .myspace {
     margin-left: 30px;
@@ -368,7 +320,7 @@ export default {
     width: 600px;
 }
 .percent{
-  font-size: 45px;
+  font-size: 35px;
 }
 .apexcharts-tooltip {
     background: #f3f3f3;

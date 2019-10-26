@@ -4,7 +4,6 @@
             <v-container fluid class="pa-0">
                 <div class="result-news-container">
                     <h1 class="mytitle result-news">{{title}}</h1>
-                    <div class="mytext result-news">新聞來源：{{source}}<br/>新聞發布時間：{{time}}</div>
                     <div class="mytext result-news">{{content}}</div>
                     <div class="myprogresscircle">
                         <v-progress-circular
@@ -31,14 +30,14 @@
                         <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/ShowUserResult"><span class="mylinkText">{{PttId}}</span></router-link></h2>
                         <div class="mytext ptt-title">
                             <div>登入次數：724</div>
-                            <div class="myspace">有效文章數：105</div>
+                            <div class="myspace">有效文章數：{{postNB}}</div>
                         </div>
                         <div class="mytext">相關ID：cloud7515、ReeJan</div>
                     </v-col>
                     <v-col md="4" class="pt-10 pb-10 result-analysis result-analysis-right">
-                        <h2 class="mysubtitle mb-2">Ptt 轉發時間：2019-09-02 18:51</h2>
-                        <div class="mytext">Ptt 轉發 IP：61.228.39.106 (臺灣)</div>
-                        <div class="mytext">第一次轉貼至本系統時間：2019-09-30 18:01</div>
+                        <h2 class="mysubtitle mb-2">Ptt 轉發時間：{{time}}</h2>
+                        <div class="mytext">Ptt 轉發 IP：{{ip}}</div>
+                        <div class="mytext">第一次轉貼至本系統時間：{{currentDate}}</div>
                     </v-col>
                 </v-row>
                 <v-row justify="start">
@@ -54,7 +53,7 @@
                 <v-row justify="start" class="mb-10">
                     <v-col md="9" class="result-analysis result-analysis-left result-analysis-right">
                         <h2 class="mysubtitle mb-2">Ptt 留言文字雲</h2>
-                        <img :src=wordCloud_result alt="word cloud" class="wordcloud" />
+                        <img class="wordcloud" v-bind:src="imageBytes" />
                     </v-col>
                 </v-row>
 
@@ -96,6 +95,7 @@ import VueApexCharts from 'vue-apexcharts';
 import wordcloud from 'vue-wordcloud';
 import wordCloud_result from '../assets/wordCloud-result.png'
 import axios from 'axios';
+import env from '../env';
 
 export default {
     name: "ShowResult",
@@ -108,14 +108,18 @@ export default {
     },
     data: function() {
         return {
-            title: this.$route.params.result.title,
+            result: {},
+            title: '',
             source: '',
             time: '',
             content: '',
             PttId: '',
+            ip: '',
+            postNB: '',
+            imageBytes: '',
             PttReplyNum: 0,
-
             wordCloud_result,
+            currentDate: '',
             interval: {},
             value: 0,
             options: {
@@ -126,7 +130,7 @@ export default {
                     },
                 },
                 xaxis: {
-                    categories: ['開心', '驚奇', '有趣', '無感', '害怕', '悲傷', '憤怒'],
+                    categories: ['負面', '正面'],
                     labels: {
                       style: {
                         fontSize: '14px',
@@ -140,11 +144,8 @@ export default {
                 },
                 colors: ['#FF9100' ],
             },
-            series: [{
-                name: '留言個數',
-                data: [30, 40, 45, 50, 49, 60, 70]
-            }],
-            pieseries: [0,0,0],
+            series: [],
+            pieseries: [20, 20, 0],
             chartOptions: {
                 responsive: [{
                     breakpoint: 480,
@@ -167,136 +168,92 @@ export default {
                         colors: 'white',
                     },
                 }
-
-
-                },
+            },
             myColors: ['#FF9100', '#E65100', '#E78403', '#EE8802', '#FD2F00'],
             myFont: 'Noto Sans TC, sans-serif',
-            defaultWords: [{
-                "name": "台灣",
-                "value": 55
-                },
-                {
-                "name": "笑死",
-                "value": 34
-                },
-                {
-                "name": "郭文貴",
-                "value": 10
-                },
-                {
-                "name": "來啊",
-                "value": 32
-                },
-                {
-                "name": "快打",
-                "value": 17
-                },
-                {
-                "name": "美國",
-                "value": 12
-                },
-                {
-                "name": "香港",
-                "value": 11
-                },
-                {
-                "name": "笑你不敢",
-                "value": 10
-                },
-                {
-                "name": "來阿",
-                "value": 9
-                },
-                {
-                "name": "哈哈哈",
-                "value": 6
-                },
-                {
-                "name": "要打快打",
-                "value": 8
-                },
-                {
-                "name": "拜託快打",
-                "value": 8
-                },
-                {
-                "name": "日本",
-                "value": 5
-                },
-                {
-                "name": "打台灣",
-                "value": 5
-                },
-                {
-                "name": "呵呵",
-                "value": 5
-                },
-                {
-                "name": "不可能",
-                "value": 5
-                },
-                {
-                "name": "班農",
-                "value": 5
-                },
-                {
-                "name": "北七",
-                "value": 5
-                },
-                {
-                "name": "給你錢",
-                "value": 5
-                },
-
-            ],
-            hotnews: [
-            {
-                
-            },
-            ],
+            hotnews: [{}],
         }
     },
-    beforeMount () {
-        let result = JSON.parse(window.localStorage.getItem('result')||'[]');
-        // predict value
-        let pred = new Number(result.pred * 100);
-        this.value = pred.toFixed(3);
-        this.interval = setTimeout(() => {
-            if (this.value === 100) {
-                return (this.value = 0)
-            }
-        }, 1000)
-        this.title = result.title;
-        this.source = result.source;
-        this.time = result.time;
-        this.content = result.content;
-        this.PttId = result.uid;
-        this.PttReplyNum = result.msg_a;
-        this.pieseries = [
-            result.msg_p, 
-            result.msg_b, 
-            result.msg_n
-        ];
-
-
-        let hot = JSON.parse(window.localStorage.getItem('hot')||'[]');
-        if(!hot){
-            axios
-            .get('http://localhost:5000/api/search')
+    created() {
+        
+    },
+    mounted() {
+        let title = JSON.parse(localStorage.getItem('title'));
+        axios
+            .post(env+'/api/query', { title: title } )
             .then(response => {
-                console.log("hot", response);
-                window.localStorage.setItem('hot', JSON.stringify(response.data));
-                hot = response.data;
+                console.log("response", response);
+                let result = response.data.resource;
+                this.result = response.resource;
+                this.title = result.title;
+                // predict value
+                this.value = new Number(result.pred);
+                this.interval = setTimeout(() => {
+                    if (this.value === 100) {
+                        return (this.value = 0)
+                    }
+                }, 1000)
+                // this.title = result.title;
+                this.source = result.source;
+                this.time = result.time;
+                this.content = result.content;
+                this.PttId = result.uid;
+                this.ip = result.ip;
+                this.postNB = result.postNB;
+                this.PttReplyNum = result.msg_a;
+                this.pieseries = [
+                    new Number(result.msg_p), 
+                    new Number(result.msg_b), 
+                    new Number(result.msg_n)
+                ];
+                this.series.push({
+                    name: '留言個數',
+                    data: [
+                        new Number(result.sep[0]) + new Number(result.sep[1]), 
+                        new Number(result.sep[2]) + new Number(result.sep[3]),
+                    ]
+                });
                 
+                let wc = result.wc;
+                wc = wc.slice(2);
+                wc = wc.slice(0, -1);
+                this.imageBytes = "data:image/png;base64,"+wc;
             })
             .catch(error => {
                 console.log(error)
                 this.errored = true
             })
-        }
-        this.hotnews = hot;
+            .finally(() => this.loading = false)
         
+        
+
+        axios
+        .get(env+'/api/search')
+        .then(response => {
+            console.log("hot", response);
+            this.hotnews = response.data;
+            
+        })
+        .catch(error => {
+            console.log(error)
+            this.errored = true
+        })
+
+
+        // record current time
+        function formatDate(date) {
+            let day = date.getDate();
+            let monthIndex = date.getMonth();
+            let year = date.getFullYear();
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            return year.toString()+'年'+(monthIndex+1).toString()+'月'+day.toString()+'日'+" "+h.toString()+':'+m.toString()+':'+s.toString();
+        }
+
+        console.log(formatDate(new Date())); 
+        this.currentDate = formatDate(new Date());
+
     },
     methods: {
         wordClickHandler(name, value, vm) {
@@ -363,7 +320,7 @@ export default {
     width: 600px;
 }
 .percent{
-  font-size: 45px;
+  font-size: 35px;
 }
 .apexcharts-tooltip {
     background: #f3f3f3;

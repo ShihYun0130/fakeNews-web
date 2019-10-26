@@ -6,13 +6,6 @@
             <v-flex xs-12 white--text mt-10 class="mytitle">可疑人物</v-flex>
             <v-flex xs-6 mt-8 ml-3 mb-8>
                 <v-row><input class="myinput user-search" placeholder="請輸入Ptt ID"/></v-row>
-              <!--<v-row>
-                <v-text-field
-                  style="width:500px;"
-                  label="請輸入 Ptt ID"
-                  solo
-                ></v-text-field>
-              </v-row>-->
             </v-flex>
             <v-flex xs-12> <div class='white--text mysubtext text-right'>*於本系統檢測超過50%機率之新聞</div></v-flex>
             <v-flex white--text mt-5 class="mytext">
@@ -26,9 +19,9 @@
                   <v-col cols="3">相關 ID</v-col>
                 </v-row>
 
-                <v-row class="UserCard"><UserCard/></v-row>
-                <v-row class="UserCard"><UserCard/></v-row>
-                <v-row class="UserCard"><UserCard/></v-row>
+                <v-row class="UserCard" v-for="(pttId, index) in pttIds" :key="index">
+                  <UserCard :pttId="pttId" />
+                </v-row>
               </v-col>
             </v-flex>
           </v-layout>
@@ -40,11 +33,28 @@
 <script>
 import UserCard from './UserCard'
 import UserCardEX from './UserCardEX'
+import axios from 'axios';
+import env from '../env';
+
 export default {
   data: function() {
-        return {
-        }
-    },
+    return {
+      pttIds: []
+    }
+  },
+  mounted() {
+    axios
+    .get(env+'/api/suspect_user')
+    .then(response => {
+      for (var i = 0, len = response.data.length; i < len; i++) {
+        this.pttIds.push(response.data[i]);
+      }
+    }).catch(error => {
+        console.log(error)
+        this.errored = true
+    })
+    console.log("pttids", this.pttIds);
+  },
   components: {
         UserCard,
         UserCardEX
