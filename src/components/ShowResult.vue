@@ -320,6 +320,7 @@ export default {
 }
 .wordcloud {
     width: 95%;
+    background: black;
 }
 .myspace {
     margin-left: 30px;
