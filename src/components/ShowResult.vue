@@ -231,6 +231,12 @@ export default {
                             new Number(result.sep[2]) + new Number(result.sep[3]),
                         ]
                     });
+
+                    let wc = result.wc;
+                    // wc = wc.slice(2);
+                    wc = wc.slice(2, -1);
+                    console.log("", wc);
+                    this.imageBytes = "data:image/png;base64,"+wc;
                 }
 
                 this.title = result.title;
@@ -243,11 +249,7 @@ export default {
                     }
                 }, 1000)
                 
-                let wc = result.wc;
-                wc = wc.slice(2);
-                wc = wc.slice(0, -1);
-                console.log(wc);
-                this.imageBytes = "data:image/png;base64,"+wc;
+                
             })
             .catch(error => {
                 console.log(error)
@@ -344,16 +346,6 @@ export default {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    color: #FD2F00
-#F95B00
-#EE8802
-#F0AD01
-#FF9100
-#FFD700
-#FD5D00
-#E0EF1A
-#444444cd
-rgba(255, 255, 255, 0.598)
 }
 .wordcloud {
     width: 95%;
