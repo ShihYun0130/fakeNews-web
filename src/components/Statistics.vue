@@ -11,7 +11,7 @@
                   <VueApexCharts width="600px" type="bar" :options="options" :series="series"></VueApexCharts>
               </v-row>
               <v-row>
-                  <div class="mytext white--text mt-5 mb-6">本系統資料庫標籤為假新聞，各家媒體累積數量</div>
+                  <div class="mytext white--text mt-5 mb-6">本系統資料庫標籤為假新聞，各家媒體累積比例</div>
               </v-row>
               <v-row justify="center">
                   <VueApexCharts width="600px" type="bar" :options="options_fake" :series="series_fake"></VueApexCharts>
@@ -97,7 +97,7 @@ export default {
           },
           series_fake:  [{
               name: '本系統內的假新聞',
-              data: [6, 6, 9, 1, 3, 3, 1, 5, 2, 2, 2]
+              data: [6/40, 6/40, 9/40, 1/40, 3/40, 3/40, 1/40, 5/40, 2/40, 2/40, 2/40]
           }],
           news: []
 
