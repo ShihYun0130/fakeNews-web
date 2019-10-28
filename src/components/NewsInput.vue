@@ -8,7 +8,9 @@
             </v-row>
             <v-row justify="center" >
                 <v-col md="6" class="myform pa-10" justify="center">
-                    <v-row class="mb-4"><h2 class="mytext white--text">新聞標題</h2></v-row>
+                    <v-row class="mb-4"><h2 class="mytext white--text">新聞標題</h2>
+                    <span id="must_fill" style="color:white;font-size:14px;">&nbsp(必填)</span>
+                    </v-row>
                     <v-row><input class="myinput" v-model="title" /></v-row>
                     <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞來源</h2></v-row>
                     <v-row><input class="myinput" /></v-row>
@@ -58,8 +60,13 @@ export default {
     },
     methods: {
         submit() {
-            localStorage.setItem('title', JSON.stringify(this.title));
-            this.$router.push({ name: 'ShowResult', params: { title: this.title } });
+            if(this.title != ""){
+                localStorage.setItem('title', JSON.stringify(this.title));
+                this.$router.push({ name: 'ShowResult', params: { title: this.title } });
+            }
+            else{
+                document.getElementById("must_fill").setAttribute("style","color:red;font-size:14px;");
+            }
         }    
     }
 

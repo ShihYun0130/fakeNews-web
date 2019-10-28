@@ -27,7 +27,7 @@
                 </div>
                 <v-row justify="start" class="mt-10">
                     <v-col md="5" class="pt-10 pb-10 result-analysis result-analysis-left">
-                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/ShowUserResult"><span class="mylinkText">{{PttId}}</span></router-link></h2>
+                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/UserList"><span class="mylinkText">{{PttId}}</span></router-link></h2>
                         <div class="mytext ptt-title">
                             <div>登入次數：724</div>
                             <div class="myspace">有效文章數：{{postNB}}</div>

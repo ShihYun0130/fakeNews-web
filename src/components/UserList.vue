@@ -3,10 +3,10 @@
     <div id="userList">
         <v-container fill-height fluid>
           <v-layout class="card-layout" column>
-            <v-flex xs-12 white--text mt-10 class="mytitle">可疑人物</v-flex>
-            <v-flex xs-6 mt-8 ml-3 mb-8>
+            <v-flex xs-12 white--text mt-10 class="mytitle">轉發人物</v-flex>
+            <!--<v-flex xs-6 mt-8 ml-3 mb-8>
                 <v-row><input class="myinput user-search" placeholder="請輸入Ptt ID"/></v-row>
-            </v-flex>
+            </v-flex>-->
             <v-flex xs-12> <div class='white--text mysubtext text-right'>*於本系統檢測超過50%機率之新聞</div></v-flex>
             <v-flex white--text mt-5 class="mytext">
               <v-col cols="12" style="width:1600px;">
