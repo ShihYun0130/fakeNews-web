@@ -1,11 +1,11 @@
 <template>
   <v-app>
   <div id="app">
-    <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Chart' || $route.path==='/ShowUserResult' ||  $route.path==='/ShowResult2'">
+    <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Statistics' || $route.path==='/ShowUserResult' ||  $route.path==='/ShowResult2' || $route.path==='/ErrorPage' ">
       <NavBar />
     </div>
-    <router-view></router-view>
-    <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Chart' || $route.path==='/ShowUserResult' ||  $route.path==='/ShowResult2' ">
+    <router-view ></router-view>
+    <div v-show="$route.path==='/About' || $route.path==='/NewsInput' ||  $route.path==='/NewsList' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Statistics' || $route.path==='/ShowUserResult' ||  $route.path==='/ShowResult2' ||  $route.path==='/ShowResult' ||  $route.path==='/UserList' ||  $route.path==='/Chart' || $route.path==='/ShowUserResult' ||  $route.path==='/ShowResult2' || $route.path==='/ErrorPage'">
       <Footer />
     </div>
   </div>
@@ -23,8 +23,9 @@ export default {
     Footer
   },
   data: () => ({
-    //
   }),
+  methods: {
+  }
 };
 </script>
 

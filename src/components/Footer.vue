@@ -4,7 +4,7 @@
         <v-footer color="transparent" class="navBar-toolbar pa-0 ma-0" fluid>
         </v-footer>
         <v-layout align-center justify-space-between id="footer-layout">
-          <v-flex class="white--text">2019 National Taiwan University Information Management CCC Lab Project</v-flex>
+          <v-flex class="white--text">2019 Information Management Project</v-flex>
           <v-flex class="grey--text text-right" >Photo by Max Muselmann on Unsplash,<br>
                     charlotte Ljones on StackSnap,<br>
                     Toa Heftiba on StackSnap</v-flex>

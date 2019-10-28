@@ -6,28 +6,28 @@
       dark="dark"
     >
       <v-expansion-panel>
-        <v-expansion-panel-header>
+        <v-expansion-panel-header disabled="isDisabled">
           <v-row style="text-align:center;">
-            <v-col cols="1" class="userDetail">abomb</v-col>
-            <v-col cols="1" class="userDetail">1892</v-col>
-            <v-col cols="1" class="userDetail">275</v-col>
-            <v-col cols="2" class="userDetail">2</v-col>
-            <v-col cols="4" class="userDetail">
-              <span class="fakePercent">92%&nbsp&nbsp</span>
-              <span>網曝大選殘酷真相 絕望嘆：DPP為大選不擇手段</span>
+            <v-col cols="1" class="userDetail">{{pttId.uid}}</v-col>
+            <v-col cols="1" class="userDetail">{{pttId.postNB}}</v-col>
+            <v-col cols="1" class="userDetail">{{pttId.postNB}}</v-col>
+            <v-col cols="2" class="userDetail">{{pttId.FakeNewsNB}}</v-col>
+            <v-col cols="4" class="userDetail" v-for="(news, index) in pttId.news" :key="index">
+              <span class="fakePercent">{{news.pred}}%&nbsp&nbsp</span>
+              <span><button @click="clickNews(news.title)">{{news.title}}</button></span>
             </v-col>
             <v-col cols="3" class="userDetail">snsdakb48、dtlove17、yillusionwei、Dinenger、j32072、team1245、AFIE</v-col>
           </v-row>
-        </v-expansion-panel-header>
+        </v-expansion-panel-header >
           <v-expansion-panel-content>
             <v-row style="margin-left:-25px;">
               <v-col cols="1" class="userDetail"></v-col>
               <v-col cols="1" class="userDetail"></v-col>
               <v-col cols="1" class="userDetail"></v-col>
               <v-col cols="2" class="userDetail"></v-col>
-              <v-col cols="4" class="userDetail">
-                <span class="fakePercent">76%&nbsp&nbsp</span>
-                <span>批小英兩岸政策「跟人家大小聲」柯文哲：我們都是Chinese</span>
+              <v-col cols="4" class="userDetail" v-for="(news, index) in pttId.news" :key="index">
+                <span class="fakePercent">{{news.pred}}%&nbsp&nbsp</span>
+                <span><button @click="clickNews(news.title)">{{news.title}}</button></span>
               </v-col>
               <v-col col="2"></v-col>
             </v-row>
@@ -39,8 +39,30 @@
 
 <script>
   export default {
-    data: () => ({
-    }),
+    props: {
+      pttId: Object,
+      FakeNewsNB: Number,
+      news: Array,
+      postNB: Number,
+      uid: String,
+    },
+    data: function() {
+      return {
+        newsNum: 0,
+        isDisabled: true
+      }
+    },
+    mounted() {
+      this.newsNum = this.pttId.news.length;
+      if(this.pttId.news.length == 1) {
+        this.isDisabled = true;
+      }
+    },
+    methods: {
+      clickNews(title) {
+        this.$router.push({name: 'ShowResult2', params: { title: title }});
+      }
+    }
   }
 </script>
 
