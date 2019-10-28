@@ -27,16 +27,17 @@
           <v-col class="pa-0 mt-3" >
             <v-row justify='space-between' align='end' >
               <div class='white--text mytext'>搜尋次數: {{ searchTimes }}</div>
-              <router-link to="/ShowResult2" class="text-dec white--text">
+              <!-- <router-link to="/ShowResult" class="text-dec white--text"> -->
               <v-btn
               color="white"
               class="mysubtext rounded-card"
               x-small
               tile
+              @click="submit"
               >
                 閱讀更多
               </v-btn>
-              </router-link>
+              <!-- </router-link> -->
             </v-row>
           </v-col>
         </v-col>
@@ -50,6 +51,13 @@ export default {
   props: ['percent', 'title', 'resource', 'pttID', 'newsTime', 'pttTime', 'searchTimes' ],
   data: () => ({
   }),
+  methods: {
+    submit() {
+        localStorage.setItem('title', JSON.stringify(this.title));
+        localStorage.setItem('content', JSON.stringify(this.content));
+        this.$router.push({ name: 'ShowResult', params: { title: this.title, content: this.content } });
+    }  
+  }
 }
 </script>
 

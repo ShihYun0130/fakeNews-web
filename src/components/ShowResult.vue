@@ -206,11 +206,11 @@ export default {
             .then(response => {
                 console.log("response", response);
                 let result = response.data;
-                if(result.resource === undefined){
+                if(result.uid === undefined){
                     this.inPtt = false
                 }
                 else {
-                    result = result.resource;
+                    // result = result.resource;
                     this.inPtt = true;
                     this.source = result.source;
                     this.time = result.time;
@@ -234,8 +234,8 @@ export default {
 
                     let wc = result.wc;
                     // wc = wc.slice(2);
-                    wc = wc.slice(2, -1);
-                    console.log("", wc);
+                    // wc = wc.slice(2, -1);
+                    // console.log("", wc);
                     this.imageBytes = "data:image/png;base64,"+wc;
                 }
 
