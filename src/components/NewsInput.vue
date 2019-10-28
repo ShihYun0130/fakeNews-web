@@ -11,9 +11,9 @@
                     <v-row class="mb-4"><h2 class="mytext white--text">新聞標題</h2></v-row>
                     <v-row><input class="myinput" v-model="title" /></v-row>
                     <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞來源</h2></v-row>
-                    <v-row><input class="myinput" /></v-row>
+                    <v-row><input class="myinput" v-model="source" /></v-row>
                     <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞內文</h2></v-row>
-                    <v-row><textarea class="mytextarea" /></v-row>
+                    <v-row><textarea class="mytextarea" v-model="content" /></v-row>
                     <v-row justify="end" class="mt-10 mytext"><button class="newsInput-go" @click="submit" >送出</button></v-row>
                 </v-col>
             </v-row>
@@ -38,28 +38,16 @@ export default {
     data: function(){ 
         return {
             title: '',
-            result: [
-            //     {
-            //     aid: '',
-            //     title: '',
-            //     ip: '',
-            //     uid: '',
-            //     msg_b: '',
-            //     msg_n: '',
-            //     msg_p: '',
-            //     msg_a: '',
-            //     content: '',
-            //     source: '',
-            //     time: '',
-            //     pred: ''
-            // }
-            ]
+            source: '',
+            content: '',
+            result: []
         } 
     },
     methods: {
         submit() {
             localStorage.setItem('title', JSON.stringify(this.title));
-            this.$router.push({ name: 'ShowResult', params: { title: this.title } });
+            localStorage.setItem('content', JSON.stringify(this.content));
+            this.$router.push({ name: 'ShowResult', params: { title: this.title, content: this.content } });
         }    
     }
 
