@@ -32,7 +32,7 @@
                             </v-col>
                         </v-progress-circular>
                     </div>
-                    <div class="myprogresscircle-small"></div>
+                    <div class="myprogresscircle-small" v-show="isLoaded"></div>
                 </div>
                 <div v-show="inPtt">
                     <v-row justify="start" class="mt-10">
