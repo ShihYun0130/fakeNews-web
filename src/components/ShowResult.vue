@@ -1,5 +1,14 @@
 <template>
+    
     <v-app>
+        <loading loader="bars" 
+        :active.sync="isLoading" 
+        :can-cancel="true" 
+        :is-full-page="false"
+        color="#EE8802"
+        background-color="transparent">
+        </loading>
+
         <div id="showResult">
             <v-container fluid class="pa-0">
                 <div class="result-news-container">
@@ -13,9 +22,9 @@
                             :value="value"
                             color="white"
                             >
-                            <v-col>
+                            <v-col v-show="isLoaded">
                               <v-row>
-                                  <v-col class="percent pa-0 font-weight-bold">{{value}}%</v-col>
+                                <v-col class="percent pa-0 font-weight-bold">{{value}}%</v-col>
                               </v-row>
                               <v-row>
                                   <v-col class="mysubtext pa-0 text-center mt-n1">為假新聞</v-col>
@@ -23,41 +32,43 @@
                             </v-col>
                         </v-progress-circular>
                     </div>
-                    <div class="myprogresscircle-small"></div>
+                    <div class="myprogresscircle-small" v-show="isLoaded"></div>
                 </div>
-                <v-row justify="start" class="mt-10">
-                    <v-col md="5" class="pt-10 pb-10 result-analysis result-analysis-left">
-                        <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/UserList"><span class="mylinkText">{{PttId}}</span></router-link></h2>
-                        <div class="mytext ptt-title">
-                            <div>登入次數：724</div>
-                            <div class="myspace">有效文章數：{{postNB}}</div>
-                        </div>
-                        <div class="mytext">相關ID：cloud7515、ReeJan</div>
-                    </v-col>
-                    <v-col md="4" class="pt-10 pb-10 result-analysis result-analysis-right">
-                        <h2 class="mysubtitle mb-2">Ptt 轉發時間：{{time}}</h2>
-                        <div class="mytext">Ptt 轉發 IP：{{ip}}</div>
-                        <div class="mytext">第一次轉貼至本系統時間：{{currentDate}}</div>
-                    </v-col>
-                </v-row>
-                <v-row justify="start">
-                    <v-col md="5" class="result-analysis result-analysis-left">
-                        <h2 class="mysubtitle mb-2">Ptt 留言數量：{{PttReplyNum}}</h2>
-                        <VueApexCharts type=donut width=380 :options="chartOptions" :series="pieseries" />
-                    </v-col>
-                    <v-col md="4" class="result-analysis result-analysis-right">
-                        <h2 class="mysubtitle mb-2">Ptt 留言情緒分析</h2>
-                        <VueApexCharts width="400" type="bar" :options="options" :series="series"></VueApexCharts>
-                    </v-col>
-                </v-row>
-                <v-row justify="start" class="mb-10">
-                    <v-col md="9" class="result-analysis result-analysis-left result-analysis-right">
-                        <h2 class="mysubtitle mb-2">Ptt 留言文字雲</h2>
-                        <img class="wordcloud" v-bind:src="imageBytes" />
-                    </v-col>
-                </v-row>
+                <div v-show="inPtt">
+                    <v-row justify="start" class="mt-10">
+                        <v-col md="5" class="pt-10 pb-10 result-analysis result-analysis-left">
+                            <h2 class="mysubtitle mb-2">Ptt 轉發 ID：<router-link to="/ShowUserResult"><span class="mylinkText">{{PttId}}</span></router-link></h2>
+                            <div class="mytext ptt-title">
+                                <div>登入次數：724</div>
+                                <div class="myspace">有效文章數：{{postNB}}</div>
+                            </div>
+                            <div class="mytext">相關ID：cloud7515、ReeJan</div>
+                        </v-col>
+                        <v-col md="4" class="pt-10 pb-10 result-analysis result-analysis-right">
+                            <h2 class="mysubtitle mb-2">Ptt 轉發時間：{{time}}</h2>
+                            <div class="mytext">Ptt 轉發 IP：{{ip}}</div>
+                            <div class="mytext">第一次轉貼至本系統時間：{{currentDate}}</div>
+                        </v-col>
+                    </v-row>
+                    <v-row justify="start">
+                        <v-col md="5" class="result-analysis result-analysis-left">
+                            <h2 class="mysubtitle mb-2">Ptt 留言數量：{{PttReplyNum}}</h2>
+                            <VueApexCharts type=donut width=380 :options="chartOptions" :series="pieseries" />
+                        </v-col>
+                        <v-col md="4" class="result-analysis result-analysis-right">
+                            <h2 class="mysubtitle mb-2">Ptt 留言情緒分析</h2>
+                            <VueApexCharts width="400" type="bar" :options="options" :series="series"></VueApexCharts>
+                        </v-col>
+                    </v-row>
+                    <v-row justify="start" class="mb-10">
+                        <v-col md="9" class="result-analysis result-analysis-left result-analysis-right">
+                            <h2 class="mysubtitle mb-2">Ptt 留言文字雲</h2>
+                            <img class="wordcloud" v-bind:src="imageBytes" />
+                        </v-col>
+                    </v-row>
+                </div>
 
-                <v-row justify="end" class="mb-10">
+                <v-row justify="end" class="mb-10" v-show="isLoaded">
                     <v-col md="9" class="pb-10 result-analysis result-analysis-left">
                         <router-link to="/NewsList"><h2 class="mysubtitle mt-10 mb-10 mylinkClean">熱門搜索</h2></router-link>
                         <v-simple-table dark class="hot-table" color="transparent">
@@ -97,17 +108,25 @@ import wordCloud_result from '../assets/wordCloud-result.png'
 import axios from 'axios';
 import env from '../env';
 
+import VueLoading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
 export default {
     name: "ShowResult",
     components: {
         VueApexCharts,
         wordcloud,
+        loading: VueLoading
     },
     beforeDestroy () {
-      clearInterval(this.interval)
+      clearInterval(this.interval);
+      clearInterval(this.interval2);
     },
     data: function() {
         return {
+            isLoading: true,
+            isLoaded: false,
+            inPtt: false,
             result: {},
             title: '',
             source: '',
@@ -178,21 +197,50 @@ export default {
         
     },
     mounted() {
+        
+
         let title = JSON.parse(localStorage.getItem('title'));
+        let content = JSON.parse(localStorage.getItem('content'));
         axios
-            .post(env+'/api/query', { title: title } )
+            .post(env+'/api/query', { title: title, content: content } )
             .then(response => {
                 console.log("response", response);
-                let result = response.data.resource;
+                let result = response.data;
+                if(result.resource === undefined){
+                    this.inPtt = false
+                }
+                else {
+                    result = result.resource;
+                    this.inPtt = true;
+                    this.source = result.source;
+                    this.time = result.time;
+                    
+                    this.PttId = result.uid;
+                    this.ip = result.ip;
+                    this.postNB = result.postNB;
+                    this.PttReplyNum = result.msg_a;
+                    this.pieseries = [
+                        new Number(result.msg_p), 
+                        new Number(result.msg_b), 
+                        new Number(result.msg_n)
+                    ];
+                    this.series.push({
+                        name: '留言個數',
+                        data: [
+                            new Number(result.sep[0]) + new Number(result.sep[1]), 
+                            new Number(result.sep[2]) + new Number(result.sep[3]),
+                        ]
+                    });
 
-                // error page
-                if (!result.title) {
-                    console.log("error");
-                    this.$router.replace({name: 'ErrorPage'});
+                    let wc = result.wc;
+                    // wc = wc.slice(2);
+                    wc = wc.slice(2, -1);
+                    console.log("", wc);
+                    this.imageBytes = "data:image/png;base64,"+wc;
                 }
 
-                this.result = response.resource;
                 this.title = result.title;
+                this.content = result.content;
                 // predict value
                 this.value = new Number(result.pred);
                 this.interval = setTimeout(() => {
@@ -200,38 +248,19 @@ export default {
                         return (this.value = 0)
                     }
                 }, 1000)
-                // this.title = result.title;
-                this.source = result.source;
-                this.time = result.time;
-                this.content = result.content;
-                this.PttId = result.uid;
-                this.ip = result.ip;
-                this.postNB = result.postNB;
-                this.PttReplyNum = result.msg_a;
-                this.pieseries = [
-                    new Number(result.msg_p), 
-                    new Number(result.msg_b), 
-                    new Number(result.msg_n)
-                ];
-                this.series.push({
-                    name: '留言個數',
-                    data: [
-                        new Number(result.sep[0]) + new Number(result.sep[1]), 
-                        new Number(result.sep[2]) + new Number(result.sep[3]),
-                    ]
-                });
                 
-                let wc = result.wc;
-                wc = wc.slice(2);
-                wc = wc.slice(0, -1);
-                console.log(wc);
-                this.imageBytes = "data:image/png;base64,"+wc;
+                
             })
             .catch(error => {
                 console.log(error)
                 this.errored = true
             })
-            .finally(() => this.loading = false)
+            .finally(() => {
+                this.isLoaded = true;
+                this.interval2 = setTimeout(() => {
+                    this.isLoading = false
+                },1000);
+            })
         
         
 
