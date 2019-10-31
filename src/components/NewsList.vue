@@ -70,7 +70,8 @@ export default {
 
   },
   components: {
-    NewsCard
+    NewsCard,
+    loading: VueLoading
   },
 
   computed: {

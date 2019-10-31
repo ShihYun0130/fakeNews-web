@@ -41,6 +41,7 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 export default {
   components: {
       VueApexCharts,
+      loading: VueLoading
   },
   beforeDestroy () {
     clearInterval(this.interval)

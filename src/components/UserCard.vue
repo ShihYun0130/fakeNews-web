@@ -11,7 +11,7 @@
             <v-col cols="3" class="userDetail">{{pttId.uid}}</v-col>
             <v-col cols="3" class="userDetail">{{pttId.postNB}}</v-col>
             <v-col cols="4" class="userDetail" v-for="(news, index) in pttId.news" :key="index">
-              <span class="fakePercent">{{news.pred}}%&nbsp&nbsp</span>
+              <!--<span class="fakePercent">{{news.pred}}%&nbsp&nbsp</span>-->
               <span><button @click="clickNews(news.title)">{{news.title}}</button></span>
             </v-col>
           </v-row>
@@ -23,7 +23,7 @@
               <v-col cols="1" class="userDetail"></v-col>
               <v-col cols="2" class="userDetail"></v-col>
               <v-col cols="4" class="userDetail" v-for="(news, index) in pttId.news" :key="index">
-                <span class="fakePercent">{{news.pred}}%&nbsp&nbsp</span>
+                <!--<span class="fakePercent">{{news.pred}}%&nbsp&nbsp</span>-->
                 <span><button @click="clickNews(news.title)">{{news.title}}</button></span>
               </v-col>
               <v-col col="2"></v-col>

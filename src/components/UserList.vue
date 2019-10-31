@@ -70,7 +70,8 @@ export default {
   },
   components: {
         UserCard,
-        UserCardEX
+        UserCardEX,
+        loading: VueLoading
   }
 }
 
