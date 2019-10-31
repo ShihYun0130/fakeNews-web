@@ -233,7 +233,7 @@ export default {
                 let wc = result.wc;
                 // wc = wc.slice(2);
                 //wc = wc.slice(2, -1);
-                console.log("", wc);
+                // console.log("", wc);
                 this.imageBytes = "data:image/png;base64,"+wc;
                 // }
 

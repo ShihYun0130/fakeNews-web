@@ -55,6 +55,7 @@ export default {
     .get(env+'/api/suspect_user')
     .then(response => {
       for (var i = 0, len = response.data.length; i < len; i++) {
+        // console.log("pttids", response.data);
         this.pttIds.push(response.data[i]);
       }
     }).catch(error => {

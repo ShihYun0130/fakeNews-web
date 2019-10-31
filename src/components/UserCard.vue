@@ -10,9 +10,9 @@
           <v-row style="text-align:center;">
             <v-col cols="3" class="userDetail">{{pttId.uid}}</v-col>
             <v-col cols="3" class="userDetail">{{pttId.postNB}}</v-col>
-            <v-col cols="4" class="userDetail" v-for="(news, index) in pttId.news" :key="index">
+            <v-col cols="4" class="userDetail" v-for="(title, index) in pttId.title" :key="index">
               <!--<span class="fakePercent">{{news.pred}}%&nbsp&nbsp</span>-->
-              <span><button @click="clickNews(news.title)">{{news.title}}</button></span>
+              <span><button @click="clickNews(title)">{{title}}</button></span>
             </v-col>
           </v-row>
         </v-expansion-panel-header >
@@ -22,9 +22,9 @@
               <v-col cols="1" class="userDetail"></v-col>
               <v-col cols="1" class="userDetail"></v-col>
               <v-col cols="2" class="userDetail"></v-col>
-              <v-col cols="4" class="userDetail" v-for="(news, index) in pttId.news" :key="index">
+              <v-col cols="4" class="userDetail" v-for="(news, index) in pttId.title" :key="index">
                 <!--<span class="fakePercent">{{news.pred}}%&nbsp&nbsp</span>-->
-                <span><button @click="clickNews(news.title)">{{news.title}}</button></span>
+                <span><button>{{news.title}}</button></span>
               </v-col>
               <v-col col="2"></v-col>
             </v-row>
@@ -38,10 +38,11 @@
   export default {
     props: {
       pttId: Object,
-      FakeNewsNB: Number,
-      news: Array,
+      // FakeNewsNB: Number,
+      // news: Array,
       postNB: Number,
       uid: String,
+      title: Array
     },
     data: function() {
       return {
@@ -50,15 +51,17 @@
       }
     },
     mounted() {
+      console.log("title", this.pttId.news);
       this.newsNum = this.pttId.news.length;
       if(this.pttId.news.length == 1) {
         this.isDisabled = true;
       }
     },
     methods: {
-      clickNews(title) {
-        this.$router.push({name: 'ShowResult2', params: { title: title }});
-      }
+      // clickNews(title) {
+      //   console.log("title");
+      //   this.$router.push({name: 'ShowResult2', params: { title: title }});
+      // }
     }
   }
 </script>
