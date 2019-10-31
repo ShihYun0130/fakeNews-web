@@ -212,7 +212,6 @@ export default {
                 else {
                     // result = result.resource;
                     this.inPtt = true;
-                    this.source = result.source;
                     this.time = result.time;
                     
                     this.PttId = result.uid;
@@ -241,7 +240,7 @@ export default {
 
                 this.title = result.title;
                 this.content = result.content;
-                // predict value
+                this.source = result.source;
                 this.value = new Number(result.pred);
                 this.interval = setTimeout(() => {
                     if (this.value === 100) {

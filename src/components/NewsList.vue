@@ -1,5 +1,12 @@
 <template>
     <div>
+      <loading loader="bars" 
+        :active.sync="isLoading" 
+        :can-cancel="true" 
+        :is-full-page="false"
+        color="#EE8802"
+        background-color="transparent">
+        </loading>
         <v-container fill-height fluid>
           <v-layout column>
             <v-row class="mytitle white--text mt-10">熱門搜索</v-row>
@@ -19,6 +26,7 @@
                     :newsTime="news.PostTime"
                     :pttTime="news.QueryTime"
                     :searchTimes="news.searchCount"
+                    :aid="news.aid"
                     />
                 </v-col>
               </v-row>
@@ -32,10 +40,14 @@ import NewsCard from './NewsCard';
 import axios from 'axios';
 import env from '../env';
 
+import VueLoading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
 export default {
   data: () => ({
     total: 8,
-    newss :[]
+    newss :[],
+    isLoading: true
 
   }),
   mounted() {
@@ -48,6 +60,12 @@ export default {
     .catch(error => {
         console.log(error)
         this.errored = true
+    })
+    .finally(() => {
+        this.interval2 = setTimeout(() => {
+            this.isLoading = false
+        },1000);
+
     })
 
   },

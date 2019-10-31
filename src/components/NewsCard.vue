@@ -48,14 +48,20 @@
 
 <script>
 export default {
-  props: ['percent', 'title', 'resource', 'pttID', 'newsTime', 'pttTime', 'searchTimes' ],
+  props: ['percent', 'title', 'resource', 'pttID', 'newsTime', 'pttTime', 'searchTimes', 'aid' ],
   data: () => ({
+    // title: '',
+    content: ''
   }),
   methods: {
     submit() {
-        localStorage.setItem('title', JSON.stringify(this.title));
-        localStorage.setItem('content', JSON.stringify(this.content));
-        this.$router.push({ name: 'ShowResult', params: { title: this.title, content: this.content } });
+      // this.title = this.title;
+      // this.conetent = this.content;
+      // console.log('hottitle', JSON.stringify(this.content));
+      // localStorage.setItem('hottitle', JSON.stringify(this.title));
+      console.log('aid', this.aid);
+      localStorage.setItem('aid', JSON.stringify(this.aid));
+      this.$router.push({ name: 'ShowResult2', params: { aid: this.aid } });
     }  
   }
 }

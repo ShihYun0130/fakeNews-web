@@ -197,51 +197,50 @@ export default {
     },
     mounted() {
         
-
-        let title = JSON.parse(localStorage.getItem('hottitle'));
-        let content = JSON.parse(localStorage.getItem('hotcontent'));
+        let aid = JSON.parse(localStorage.getItem('aid'));
+        console.log('show', aid);
         axios
-            .post(env+'/api/query', { title: title, content: content } )
+            .post(env+'/api/single_search', { aid: aid } )
             .then(response => {
                 console.log("response", response);
-                let result = response.data;
-                if(result.resource === undefined){
-                    this.inPtt = false
-                }
-                else {
-                    result = result.resource;
-                    this.inPtt = true;
-                    this.source = result.source;
-                    this.time = result.time;
-                    
-                    this.PttId = result.uid;
-                    this.ip = result.ip;
-                    this.postNB = result.postNB;
-                    this.PttReplyNum = result.msg_a;
-                    this.pieseries = [
-                        new Number(result.msg_p), 
-                        new Number(result.msg_b), 
-                        new Number(result.msg_n)
-                    ];
-                    this.series.push({
-                        name: '留言個數',
-                        data: [
-                            new Number(result.sep[0]) + new Number(result.sep[1]), 
-                            new Number(result.sep[2]) + new Number(result.sep[3]),
-                        ]
-                    });
+                let result = response.data.resource;
+                // if(result.resource === undefined){
+                //     this.inPtt = false
+                // }
+                // else {
+                // result = result.resource;
+                this.inPtt = true;
+                this.source = result.source;
+                this.time = result.time;
+                
+                this.PttId = result.uid;
+                this.ip = result.ip;
+                this.postNB = result.postNB;
+                this.PttReplyNum = result.msg_a;
+                this.pieseries = [
+                    new Number(result.msg_p), 
+                    new Number(result.msg_b), 
+                    new Number(result.msg_n)
+                ];
+                this.series.push({
+                    name: '留言個數',
+                    data: [
+                        new Number(result.sep[0]) + new Number(result.sep[1]), 
+                        new Number(result.sep[2]) + new Number(result.sep[3]),
+                    ]
+                });
 
-                    let wc = result.wc;
-                    // wc = wc.slice(2);
-                    wc = wc.slice(2, -1);
-                    console.log("", wc);
-                    this.imageBytes = "data:image/png;base64,"+wc;
-                }
+                let wc = result.wc;
+                // wc = wc.slice(2);
+                wc = wc.slice(2, -1);
+                console.log("", wc);
+                this.imageBytes = "data:image/png;base64,"+wc;
+                // }
 
                 this.title = result.title;
                 this.content = result.content;
                 // predict value
-                this.value = new Number(result.pred);
+                this.value = new Number(result.prediction);
                 this.interval = setTimeout(() => {
                     if (this.value === 100) {
                         return (this.value = 0)

@@ -1,5 +1,12 @@
 <template>
   <v-app>
+    <loading loader="bars" 
+        :active.sync="isLoading" 
+        :can-cancel="true" 
+        :is-full-page="false"
+        color="#EE8802"
+        background-color="transparent">
+    </loading>
     <div id="chart">
         <v-container fill-height fluid>
           <v-col column>
@@ -27,6 +34,9 @@ import VueApexCharts from 'vue-apexcharts'
 import axios from 'axios'
 import env from '../env';
 
+import VueLoading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
 export default {
   components: {
       VueApexCharts,
@@ -36,6 +46,7 @@ export default {
   },
   data: function() {
       return {
+          isLoading: true,
           interval: {},
           value: 0,
           options: {
@@ -136,6 +147,12 @@ export default {
     .catch(error => {
         console.log(error)
         this.errored = true
+    })
+    .finally(() => {
+        this.interval2 = setTimeout(() => {
+            this.isLoading = false
+        },1000);
+
     })
 
   },

@@ -1,5 +1,12 @@
 <template>
   <v-app>
+    <loading loader="bars" 
+        :active.sync="isLoading" 
+        :can-cancel="true" 
+        :is-full-page="false"
+        color="#EE8802"
+        background-color="transparent">
+    </loading>
     <div id="userList">
         <v-container fill-height fluid>
           <v-layout class="card-layout" column>
@@ -36,10 +43,14 @@ import UserCardEX from './UserCardEX'
 import axios from 'axios';
 import env from '../env';
 
+import VueLoading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
 export default {
   data: function() {
     return {
-      pttIds: []
+      pttIds: [],
+      isLoading: true
     }
   },
   mounted() {
@@ -52,6 +63,11 @@ export default {
     }).catch(error => {
         console.log(error)
         this.errored = true
+    })
+    .finally(() => {
+        this.interval2 = setTimeout(() => {
+            this.isLoading = false
+        },1000);
     })
     console.log("pttids", this.pttIds);
   },
