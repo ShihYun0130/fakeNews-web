@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <loading loader="bars" 
-        :active.sync="isLoading" 
-        :can-cancel="true" 
+    <loading loader="bars"
+        :active.sync="isLoading"
+        :can-cancel="true"
         :is-full-page="false"
         color="#EE8802"
         background-color="transparent">
@@ -12,16 +12,17 @@
           <v-col column>
               <v-row class="mytitle white--text mt-10">統計資訊</v-row>
               <v-row>
-                  <div class="mytext white--text mt-5 mb-6">使用本系統查詢之新聞，各家媒體累積數量</div>
+                    <div class="mytext white--text mt-5 mb-6">本系統資料庫標籤為假新聞，各家媒體累積比例</div>
               </v-row>
               <v-row justify="center" class="sta_space">
-                  <VueApexCharts width="600px" type="bar" :options="options" :series="series"></VueApexCharts>
+                  <VueApexCharts width="600px" type="bar" :options="options_fake" :series="series_fake"></VueApexCharts>
               </v-row>
               <v-row>
-                  <div class="mytext white--text mt-5 mb-6">本系統資料庫標籤為假新聞，各家媒體累積比例</div>
+
+                  <div class="mytext white--text mt-5 mb-6">使用本系統查詢之新聞，各家媒體累積數量</div>
               </v-row>
               <v-row justify="center">
-                  <VueApexCharts width="600px" type="bar" :options="options_fake" :series="series_fake"></VueApexCharts>
+                  <VueApexCharts width="600px" type="bar" :options="options" :series="series"></VueApexCharts>
               </v-row>
           </v-col>
         </v-container>

@@ -2,7 +2,7 @@
     <div id="navBar">
       <v-container fill-height fluid>
         <v-toolbar color="transparent" class="navBar-toolbar pa-0">
-            <router-link class="text-dec white--text" to="/Home"><button class="mylink">DeFaker 抵非客</button></router-link>
+            <router-link class="text-dec white--text" to="/Home"><button class="mylink"><img src="../assets/logo.png" class="nav-img"></button></router-link>
             <div class="flex-grow-1"></div>
             <router-link class="text-dec white--text pl-8" to="/NewsInput"><button class="mylink">新聞查詢</button></router-link>
             <router-link class="text-dec white--text pl-8" to="/NewsList"><button class="mylink">熱門搜索</button></router-link>
@@ -48,6 +48,10 @@ export default {
 .mylink:active{
   color: #FD5D00;
   outline: none;
+}
+
+.nav-img{
+  width: 90px
 }
 
 

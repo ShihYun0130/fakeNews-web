@@ -1,10 +1,15 @@
+
+
+
+
+
 <template>
     <div id="home">
         <v-container fill-height fluid>
             <v-layout align-end> <!--置底-->
               <v-flex xs12>
-                  <div class="mysubtitle white--text mb-n7">看看誰在說謊?</div><!--Margin Bootom Negative 7 level-->
-                  <div class="hometitle white--text">DeFaker</div>
+                  <div class="mysubtitle white--text">看看誰在說謊?</div><!--Margin Bootom Negative 7 level-->
+                  <div><img src="../assets/logo.png" class="home-img"></div>
                   <router-link to="/NewsInput"><button class="home-start mb-12">新聞查詢</button></router-link>
               </v-flex>
           </v-layout>
@@ -30,6 +35,10 @@ export default {
   padding: 0 7.3% !important;
 }
 
+.home-img{
+  width: 600px;
+  margin: 20px 0
+}
 .hometitle {
   font-size: 90px
 }
