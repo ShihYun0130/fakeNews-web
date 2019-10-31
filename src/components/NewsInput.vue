@@ -14,7 +14,9 @@
                     <v-row><input class="myinput" v-model="title" /></v-row>
                     <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞來源</h2></v-row>
                     <v-row><input class="myinput" v-model="source" /></v-row>
-                    <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞內文</h2></v-row>
+                    <v-row class="mt-10 mb-4"><h2 class="mytext white--text">新聞內文</h2>
+                    <span id="must_fill2" style="color:white;font-size:14px;">&nbsp(必填)</span>
+                    </v-row>
                     <v-row><textarea class="mytextarea" v-model="content" /></v-row>
                     <v-row justify="end" class="mt-10 mytext"><button class="newsInput-go" @click="submit" >送出</button></v-row>
                 </v-col>
@@ -47,13 +49,14 @@ export default {
     },
     methods: {
         submit() {
-            if(this.title != ""){
+            if(this.title != "" && this.content != ""){
                 localStorage.setItem('title', JSON.stringify(this.title));
                 localStorage.setItem('content', JSON.stringify(this.content));
                 this.$router.push({ name: 'ShowResult', params: { title: this.title, content: this.content } });
             }
             else{
-                document.getElementById("must_fill").setAttribute("style","color:red;font-size:14px;");
+                if(this.title == "") document.getElementById("must_fill").setAttribute("style","color:red;font-size:14px;");
+                if(this.content == "") document.getElementById("must_fill2").setAttribute("style","color:red;font-size:14px;");
             }
         }    
     }
