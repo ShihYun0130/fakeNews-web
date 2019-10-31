@@ -53,7 +53,7 @@
     mounted() {
       console.log("title", this.pttId.news);
       this.newsNum = this.pttId.news.length;
-      if(this.pttId.news.length == 1) {
+      if(this.pttId.title.length == 1) {
         this.isDisabled = true;
       }
     },
