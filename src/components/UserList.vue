@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <loading loader="bars" 
-        :active.sync="isLoading" 
-        :can-cancel="true" 
+    <loading loader="bars"
+        :active.sync="isLoading"
+        :can-cancel="true"
         :is-full-page="false"
         color="#EE8802"
         background-color="transparent">
@@ -10,20 +10,17 @@
     <div id="userList">
         <v-container fill-height fluid>
           <v-layout class="card-layout" column>
-            <v-flex xs-12 white--text mt-10 class="mytitle">轉發人物</v-flex>
+            <v-flex xs-12 white--text mt-10 class="mytitle">可疑人物</v-flex>
             <!--<v-flex xs-6 mt-8 ml-3 mb-8>
                 <v-row><input class="myinput user-search" placeholder="請輸入Ptt ID"/></v-row>
             </v-flex>-->
-            <v-flex xs-12> <div class='white--text mysubtext text-right'>*使用者輸入本系統所累積的新聞次數</div></v-flex>
+            <v-flex xs-12> <div class='mytext white--text mt-5 mb-6'>本系統資料庫標籤為假新聞，其轉發的Ptt ID</div></v-flex>
             <v-flex white--text mt-5 class="mytext">
               <v-col cols="12" style="width:1600px;">
                 <v-row style="text-align:center;" ma-2>
-                  <v-col cols="1">Ptt ID</v-col>
-                  <v-col cols="1">登入次數</v-col>
-                  <v-col cols="1">有效文章數</v-col>
-                  <v-col cols="2">轉發新聞次數*</v-col>
+                  <v-col cols="3">Ptt ID</v-col>
+                  <v-col cols="3">有效文章數</v-col>
                   <v-col cols="4">轉發之新聞</v-col>
-                  <v-col cols="3">相關 ID</v-col>
                 </v-row>
 
                 <v-row class="UserCard" v-for="(pttId, index) in pttIds" :key="index">

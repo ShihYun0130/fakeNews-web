@@ -8,15 +8,12 @@
       <v-expansion-panel>
         <v-expansion-panel-header disabled="isDisabled">
           <v-row style="text-align:center;">
-            <v-col cols="1" class="userDetail">{{pttId.uid}}</v-col>
-            <v-col cols="1" class="userDetail">{{pttId.postNB}}</v-col>
-            <v-col cols="1" class="userDetail">{{pttId.postNB}}</v-col>
-            <v-col cols="2" class="userDetail">{{pttId.FakeNewsNB}}</v-col>
+            <v-col cols="3" class="userDetail">{{pttId.uid}}</v-col>
+            <v-col cols="3" class="userDetail">{{pttId.postNB}}</v-col>
             <v-col cols="4" class="userDetail" v-for="(news, index) in pttId.news" :key="index">
               <span class="fakePercent">{{news.pred}}%&nbsp&nbsp</span>
               <span><button @click="clickNews(news.title)">{{news.title}}</button></span>
             </v-col>
-            <v-col cols="3" class="userDetail">snsdakb48、dtlove17、yillusionwei、Dinenger、j32072、team1245、AFIE</v-col>
           </v-row>
         </v-expansion-panel-header >
           <v-expansion-panel-content>

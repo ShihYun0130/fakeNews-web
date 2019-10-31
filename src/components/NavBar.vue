@@ -6,7 +6,7 @@
             <div class="flex-grow-1"></div>
             <router-link class="text-dec white--text pl-8" to="/NewsInput"><button class="mylink">新聞查詢</button></router-link>
             <router-link class="text-dec white--text pl-8" to="/NewsList"><button class="mylink">熱門搜索</button></router-link>
-            <router-link class="text-dec white--text pl-8" to="/UserList"><button class="mylink">轉發人物</button></router-link>
+            <router-link class="text-dec white--text pl-8" to="/UserList"><button class="mylink">可疑人物</button></router-link>
             <router-link class="text-dec white--text pl-8" to="/Statistics"><button class="mylink">統計資訊</button></router-link>
             <router-link class="text-dec white--text pl-8" to="/About"><button class="mylink">關於我們</button></router-link>
 
