@@ -23,7 +23,7 @@
     "vue-wordcloud": "^1.1.1",
     "vue2-circle-progress": "^1.2.3",
     "vuelidate": "^0.7.4",
-    "vuetify": "^2.0.0"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
